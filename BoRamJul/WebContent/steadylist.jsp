@@ -16,7 +16,7 @@
 %>
 <%
 	TBookDAO dao = new TBookDAO();
-	ArrayList<TBookDTO> newbook = dao.selectbest();
+	ArrayList<TBookDTO> steady = dao.selectbest();
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -108,7 +108,7 @@
 	</div>
 	<!-- /.site-header -->
 	<hr class="hr_main">
-	<h1 style="text-align: center; margin: 30px;">신간도서</h1>
+	<h1 style="text-align: center; margin: 30px;">스테디셀러</h1>
 	<%
 			for(int i = 0; i < 8; i++) {
 		%>
@@ -118,16 +118,16 @@
 			<div class="th_img" style="display: inline-block;">
 			
 			
-				<img src="<%=newbook.get(i).getBookCover() %>">
+				<img src="<%=steady.get(i).getBookCover() %>">
 			</div>
 			<div class="info_tab_bl">
 			
 				<ul>
-					<li style="padding-top: 55px;">제목 : <%= newbook.get(i).getBookTitle() %></li>
+					<li style="padding-top: 55px;">제목 : <%= steady.get(i).getBookTitle() %></li>
 					<br>
-					<li>저자 : <%= newbook.get(i).getBookAuthor() %></li>
+					<li>저자 : <%= steady.get(i).getBookAuthor() %></li>
 					<br>
-					<li>출판사 : <%= newbook.get(i).getBookPublisher() %></li>
+					<li>출판사 : <%= steady.get(i).getBookPublisher() %></li>
 				</ul>
 				
 			</div>
@@ -136,15 +136,15 @@
 		<%if ( i % 2 == 1) { %>
 		<div class="rank_tab" style="background-color: rgb(248, 226, 234)">
 			<div class="th_img" style="display: inline-block;">
-				<img src="<%=newbook.get(i).getBookCover() %>">
+				<img src="<%=steady.get(i).getBookCover() %>">
 			</div>
 			<div class="info_tab_bl">
 				<ul>
-					<li style="padding-top: 55px;">제목 : <%= newbook.get(i).getBookTitle() %></li>
+					<li style="padding-top: 55px;">제목 : <%= steady.get(i).getBookTitle() %></li>
 					<br>
-					<li>저자 : <%= newbook.get(i).getBookAuthor() %></li>
+					<li>저자 : <%= steady.get(i).getBookAuthor() %></li>
 					<br>
-					<li>출판사 : <%= newbook.get(i).getBookPublisher() %></li>
+					<li>출판사 : <%= steady.get(i).getBookPublisher() %></li>
 				</ul>
 			</div>
 		</div>		

@@ -2,7 +2,7 @@
 	text-color: #000;
 }
 
-/* 폰트 */
+/* �룿�듃 */
 @font-face {
     font-family: 'GmarketSansBold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
@@ -30,30 +30,30 @@ body {
 .container {
 	width: 900px;
 }
-/* 상단 */
+/* �긽�떒 */
 nav {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	margin: 3em 0 1em;
 }
-/* 상단 제목 */
+/* �긽�떒 �젣紐� */
 #nav_title {
     font-family: 'GmarketSansBold';
 	font-size: 40px;
 	align-item: left;
 }
-/* 상단 로그인 */
+/* �긽�떒 濡쒓렇�씤 */
 #nav_login {
     font-family: 'GmarketSansBold';
 	display: flex;
 	font-size: 20px;
 }
-/* 로그인&회원가입 margin */
+/* 濡쒓렇�씤&�쉶�썝媛��엯 margin */
 #nav_login>a {
 	margin: 0px 10px 0px;
 }
-/* 상단 메뉴 start */
+/* �긽�떒 硫붾돱 start */
 #menu-wrapper {
     font-family: 'GmarketSansBold';
 	display: flex;
@@ -73,18 +73,18 @@ ul.menu-first {
 ul.menu-first>li {
 	margin-right: 30px;
 }
-/* 상단 메뉴 end */
-/* 수평선 hr */
+/* �긽�떒 硫붾돱 end */
+/* �닔�룊�꽑 hr */
 hr.hr_main {
 	width: 900px;
 	border-top: 3px solid #c3c3c3;
 }
-/* 링크 */
+/* 留곹겕 */
 a {
 	text-decoration: none;
 	color: rgba(25, 25, 25, 0.8);
 }
-/* 링크 hover */
+/* 留곹겕 hover */
 a:hover {
 	text-decoration: none;
 	color: rgba(25, 25, 25, 0.4);
@@ -353,7 +353,7 @@ button:focus, input:focus, select:focus, textarea:focus {
 .menu-responsive ul li.active a {
   color: #ec523f;
 }*/
-/* 슬라이더 */
+/* �뒳�씪�씠�뜑 */
 .slider {
 	display: flex;
 	align-content: center;
@@ -376,13 +376,13 @@ button:focus, input:focus, select:focus, textarea:focus {
 	display: flex;
 	align-items: center;
 }
-/* 슬라이더 책 제목 */
+/* �뒳�씪�씠�뜑 梨� �젣紐� */
 .slider-title {
 	margin-top: -30%;
 	margin-left: 43%;
 	font-size: 25px;
 }
-/* 슬라이더 책 요약 */
+/* �뒳�씪�씠�뜑 梨� �슂�빟 */
 .slider-berief {
 	max-height: 3em;
 	overflow: hidden;
@@ -392,7 +392,7 @@ button:focus, input:focus, select:focus, textarea:focus {
 	margin-left: 43%;
 	margin-right: 10%;
 }
-/* 슬라이더 이미지 */
+/* �뒳�씪�씠�뜑 �씠誘몄� */
 .flexslider .slides img {
 	margin-top: 2.5%;
 	display: flex;
@@ -413,7 +413,7 @@ button:focus, input:focus, select:focus, textarea:focus {
   top: 0;
   left: 0;
   z-index: 8;
-  background: rgba(0, 0, 0, 0.5); 슬라이더 불투명
+  background: rgba(0, 0, 0, 0.5); �뒳�씪�씠�뜑 遺덊닾紐�
   width: 100%;
   height: 100%;
 } */
@@ -453,13 +453,13 @@ button:focus, input:focus, select:focus, textarea:focus {
 	text-transform: uppercase;
 	font-weight: 700;
 }
-/* 베스트셀러 & 신간 */
+/* 踰좎뒪�듃���윭 & �떊媛� */
 h2 {
     font-family: 'GmarketSansBold';
 	font-size: 30px;
 	text-align:left;
 }
-/* 베스트셀러 */
+/* 踰좎뒪�듃���윭 */
 span.best {
 	background: linear-gradient(to top, #faf2c5 50%, transparent 50%);
 	border-bottom: 2px solid #faf2c5; 
@@ -468,11 +468,11 @@ span.best {
 #Bestseller {
 	background: #f8f6ea;
 }
-/* 슬라이더 <-> 베스트셀러 간격 */
+/* �뒳�씪�씠�뜑 <-> 踰좎뒪�듃���윭 媛꾧꺽 */
 .content-section {
 	margin-top: 2em;
 }
-/* 신간 */
+/* �떊媛� */
 span.new {
 	background: linear-gradient(to top, #afe4f3 50%, transparent 50%);
 	border-bottom: 2px solid #afe4f3; 
@@ -480,6 +480,16 @@ span.new {
  }
 #Newbooks {
 	background: #eaf5f8;
+    margin-top: -5px;
+}
+/*스테디셀러*/
+span.steady{
+	background: linear-gradient(to top, #ffaeab 50%, transparent 50%);
+	border-bottom: 2px solid #ffaeab; 
+	text-align:left;
+}
+#Steadyseller {
+	background: #f8e2ea;
     margin-top: -5px;
 }
     /* position: absolute;
@@ -899,7 +909,7 @@ span.new {
 
 #go-top {
 	background-color: #ec523f;
-	color: white;
+/* 	color: white; */
 	padding: 15px 40px;
 	text-transform: uppercase;
 	font-weight: 700;
