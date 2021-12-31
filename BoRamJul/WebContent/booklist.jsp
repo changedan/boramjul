@@ -40,9 +40,9 @@
 .rank_tab img {
 	width: 105px;
 	height: 140px;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	margin-left:600px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin-left:500px;
 }
 
 .rank_tab_bl {

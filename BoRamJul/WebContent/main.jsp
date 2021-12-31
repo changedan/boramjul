@@ -296,7 +296,7 @@
 	<div id="overjoin" class="overlayjoin" style="z-index: 2000;">
 		<div class="joinOver">
 			<span class="closebtn" onclick="closejoin()" title="close">X</span>
-			<h2>
+			<h2 style="text-align: center;">
 				BZBZ<br>회원가입
 			</h2>
 			<hr>
@@ -326,7 +326,7 @@
 	<div id="overlogin" class="overlaylogin" style="z-index: 2000;">
 		<div class="joinOver">
 			<span class="closebtn" onclick="closelogin()" title="close">X</span>
-			<h2>
+			<h2 style="text-align: center;">
 				BZBZ<br>로그인
 			</h2>
 			<hr>
