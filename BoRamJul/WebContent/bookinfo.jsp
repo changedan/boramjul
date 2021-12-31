@@ -1,10 +1,13 @@
+<%@page import="com.DTO.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.vo.TBookDTO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
+
 <%
 	TBookDTO book = (TBookDTO) request.getAttribute("book");
+	memberDTO dto = (memberDTO)session.getAttribute("dto"); 
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -195,9 +198,14 @@ hr {
 					<a href="#">북작북작</a>
 				</div>
 				<div id="nav_login">
-					<a href="#" onclick="openlogin()" id="a_login">로그인</a> <a href="#"
-						onclick="openjoin()">회원가입</a>
-				</div>
+							<%if (dto == null){%>
+							<a href="#" onclick="openlogin()" style="font-size: 20px; font-weight: bold;">로그인&nbsp;&nbsp;&nbsp;</a>
+							<a href="#" onclick="openjoin()"style="font-size: 20px; font-weight: bold;">회원가입</a>
+							<%}else {%>
+							<a href ="LogoutCon" style="font-size: 20px; font-weight: bold;">로그아웃&nbsp;&nbsp;&nbsp;</a>
+							<a href="#" onclick="openinfo()"style="font-size: 20px; font-weight: bold;">회원정보[닉네임:<%=dto.getMbNick()%>]</a>
+							<%} %>  
+					</div>
 			</nav>
 		</div>
 		<div class="main-header">
