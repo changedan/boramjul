@@ -12,7 +12,11 @@
 
 <%
 	memberDTO dto = (memberDTO) session.getAttribute("dto");
-TBookDTO book = (TBookDTO) request.getAttribute("book");
+	TBookDTO book = (TBookDTO) request.getAttribute("book");
+%>
+<%
+	TBookDAO dao = new TBookDAO();
+	ArrayList<TBookDTO> newbook = dao.selectbest();
 %>
 
 <!DOCTYPE html>
@@ -40,9 +44,9 @@ TBookDTO book = (TBookDTO) request.getAttribute("book");
 .rank_tab img {
 	width: 105px;
 	height: 140px;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	margin-left: 600px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin-left: 500px;
 }
 
 .rank_tab_bl {
@@ -64,7 +68,7 @@ TBookDTO book = (TBookDTO) request.getAttribute("book");
 		<div class="container">
 			<nav id="nav_header">
 				<div id="nav_title">
-					<a href="#">북작북작</a>
+					<a href="main.jsp">북작북작</a>
 				</div>
 				<div id="nav_login">
 					<%
@@ -79,7 +83,7 @@ TBookDTO book = (TBookDTO) request.getAttribute("book");
 					%>
 					<a href="LogoutCon" style="font-size: 20px; font-weight: bold;">로그아웃&nbsp;&nbsp;&nbsp;</a>
 					<a href="#" onclick="openinfo()"
-						style="font-size: 20px; font-weight: bold;">회원정보[닉네임:] </a>
+						style="font-size: 20px; font-weight: bold;">회원정보[닉네임:<%=dto.getMbNick()%>] </a>
 					<%
 						}
 					%>
@@ -90,8 +94,8 @@ TBookDTO book = (TBookDTO) request.getAttribute("book");
 			<div class="container">
 				<div id="menu-wrapper">
 					<ul class="menu-first">
-						<li><a href="#Bestseller">베스트셀러</a></li>
-						<li><a href="#Newbooks">신간도서</a></li>
+						<li><a href="booklist.jsp">베스트셀러</a></li>
+						<li><a href="newlist.jsp">신간도서</a></li>
 						<li><a href="#our-team">자유게시판</a></li>
 					</ul>
 					<!-- /.main-menu -->
@@ -105,23 +109,50 @@ TBookDTO book = (TBookDTO) request.getAttribute("book");
 	<!-- /.site-header -->
 	<hr class="hr_main">
 	<h1 style="text-align: center; margin: 30px;">신간도서</h1>
-	<div class="rank_tab" style="background-color: rgb(248, 246, 234)">
-		<div class="th_img" style="display: inline-block;">
-			<img src="">
+	<%
+			for(int i = 0; i < 8; i++) {
+		%>
+		<%if ( i % 2 == 0) { %>
+		<div class="rank_tab" style="background-color: rgb(248, 246, 234)">
+		
+			<div class="th_img" style="display: inline-block;">
+			
+			
+				<img src="<%=newbook.get(i).getBookCover() %>">
+			</div>
+			<div class="info_tab_bl">
+			
+				<ul>
+					<li style="padding-top: 55px;">제목 : <%= newbook.get(i).getBookTitle() %></li>
+					<br>
+					<li>저자 : <%= newbook.get(i).getBookAuthor() %></li>
+					<br>
+					<li>출판사 : <%= newbook.get(i).getBookPublisher() %></li>
+				</ul>
+				
+			</div>
 		</div>
-		<div class="info_tab_bl">
-			<ul>
-				<li style="padding-top: 55px;">도서명</li>
-				<br>
-				<li>저자</li>
-				<br>
-				<li>출판사</li>
-				<br>
-				<li>출간일</li>
-				<br>
-			</ul>
-		</div>
+		<%} %>
+		<%if ( i % 2 == 1) { %>
+		<div class="rank_tab" style="background-color: rgb(248, 226, 234)">
+			<div class="th_img" style="display: inline-block;">
+				<img src="<%=newbook.get(i).getBookCover() %>">
+			</div>
+			<div class="info_tab_bl">
+				<ul>
+					<li style="padding-top: 55px;">제목 : <%= newbook.get(i).getBookTitle() %></li>
+					<br>
+					<li>저자 : <%= newbook.get(i).getBookAuthor() %></li>
+					<br>
+					<li>출판사 : <%= newbook.get(i).getBookPublisher() %></li>
+				</ul>
+			</div>
+		</div>		
+		<%} %>
+		<%
+			}
+		%>
+		
 	</div>
-
 </body>
 </html>
