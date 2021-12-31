@@ -10,8 +10,9 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%
-	memberDTO dto = (memberDTO) session.getAttribute("dto");
+<%	
+	memberDTO dto = (memberDTO)session.getAttribute("dto");
+	TBookDTO book = (TBookDTO) request.getAttribute("book");
 %>
 
 <!DOCTYPE html>
@@ -51,7 +52,7 @@
 
 .info_tab_bl ul {
 	list-style: none;
-	padding-left: 10px;
+	padding-left: 30px;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	overflow: hidden;
@@ -104,17 +105,19 @@
 	<!-- /.site-header -->
 	<hr class="hr_main">
 	<h1 style="text-align: center; margin: 30px;">베스트셀러</h1>
-	<div class="rank_tab">
+		<div class="rank_tab" style="background-color: rgb(248, 246, 234)">
 		<div class="th_img" style="display: inline-block;">
-			<img src="">
+			<img src="<%=book.getBookCover()%>">
 		</div>
 		<div class="info_tab_bl">
 			<ul>
-				<li style="margin-top: 5px;">블로그 게시글 제목</li>
-				<li>게시글 요약</li>
-				<li>블로그명</li>
+				<li style="padding-top: 55px;"><%=book.getBookTitle()%></li><br>
+				<li><%=book.getBookAuthor()%> 지음</li><br>
+				<li><%=book.getBookPublisher()%></li><br>
+				<li><%=book.getBookDate()%></li><br>
 			</ul>
 		</div>
 	</div>
+
 </body>
 </html>
