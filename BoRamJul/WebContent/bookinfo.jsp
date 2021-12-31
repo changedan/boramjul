@@ -6,7 +6,7 @@
 <%@page import="java.sql.Connection"%>
 
 <%
-	TBookDTO book = (TBookDTO) request.getAttribute("book");
+	TBookDTO book = (TBookDTO)request.getAttribute("book");
 	memberDTO dto = (memberDTO)session.getAttribute("dto"); 
 %>
 <!DOCTYPE html>
@@ -319,25 +319,23 @@ hr {
 				<h5 style="text-align: center; margin-top: 0px; font-size: 15px;"><%=book.getBookAuthor()%></h5>
 				<form action="#" style="text-align: center;">
 					<hr>
-					<span style="display: inline-block;"> <label for="tag"
-						style="font-size: 15px;"><strong>도서 태그</strong> <input
-							name="tag" type="text" placeholder="#재미"
-							style="width: 90px; margin-left: 10px; text-align: center;">
-							<input name="tag" type="text" placeholder="#스릴"
-							style="width: 90px; margin-left: 10px; text-align: center;">
-							<input name="tag" type="text" placeholder="#유용한"
-							style="width: 90px; margin-left: 10px; text-align: center;">
+					<span style="display: inline-block;"> 
+					<label for="tag" style="font-size: 15px;">
+					<strong>도서 태그</strong> 
+					<input name="tag" type="text" placeholder="#재미" style="width: 90px; margin-left: 10px; text-align: center;">
+					<input name="tag" type="text" placeholder="#스릴" style="width: 90px; margin-left: 10px; text-align: center;">
+					<input name="tag" type="text" placeholder="#유용한" style="width: 90px; margin-left: 10px; text-align: center;">
 					</label>
 					</span>
 					<hr>
-					<textarea cols="50" rows="15" placeholder="서평을 남겨주세요"
-						maxlength="1000"
-						style="border: 1px dotted gray; display: inline-block; margin: 5px;"></textarea>
+					<textarea cols="50" rows="15" placeholder="서평을 남겨주세요" maxlength="1000" style="border: 1px dotted gray; display: inline-block; margin: 5px;"></textarea>
 					<hr>
 					<div class="starpoint_wrap" style="display: inline-block;">
 						<div class="starpoint_box">
-							<label for="starpoint_1" class="label_star" title="1"><span
-								class="blind">1점</span></label> <label for="starpoint_2"
+							<label for="starpoint_1" class="label_star" title="1">
+								<span class="blind">1점</span>
+							</label> 
+							<label for="starpoint_2"
 								class="label_star" title="2"><span class="blind">2점</span></label>
 							<label for="starpoint_3" class="label_star" title="3"><span
 								class="blind">3점</span></label> <label for="starpoint_4"

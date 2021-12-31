@@ -73,7 +73,7 @@
 					<%
 						if (dto == null) {
 					%>
-					<a href="#" onclick="openlogin()"
+					<a href="main.jsp" onclick="openlogin()"
 						style="font-size: 20px; font-weight: bold;">로그인&nbsp;&nbsp;&nbsp;</a>
 					<a href="#" onclick="openjoin()"
 						style="font-size: 20px; font-weight: bold;">회원가입</a>
