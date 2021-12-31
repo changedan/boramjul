@@ -32,7 +32,7 @@
 		<div class="container">
 			<nav id="nav_header">
 				<div id="nav_title">
-					<a href="#">북작북작</a>
+					<a href="main.jsp">북작북작</a>
 				</div>
 					<div id="nav_login">
 							<%if (dto == null){%>
@@ -50,7 +50,7 @@
 				<div id="menu-wrapper">
 					<ul class="menu-first">
 						<li><a href="booklist.jsp">베스트셀러</a></li>
-						<li><a href="#Newbooks">신간도서</a></li>
+						<li><a href="newlist.jsp">신간도서</a></li>
 						<li><a href="#our-team">자유게시판</a></li>
 					</ul>
 					<!-- /.main-menu -->
@@ -296,7 +296,7 @@
 	<div id="overjoin" class="overlayjoin" style="z-index: 2000;">
 		<div class="joinOver">
 			<span class="closebtn" onclick="closejoin()" title="close">X</span>
-			<h2>
+			<h2 style="text-align: center;">
 				BZBZ<br>회원가입
 			</h2>
 			<hr>
@@ -326,7 +326,7 @@
 	<div id="overlogin" class="overlaylogin" style="z-index: 2000;">
 		<div class="joinOver">
 			<span class="closebtn" onclick="closelogin()" title="close">X</span>
-			<h2>
+			<h2 style="text-align: center;">
 				BZBZ<br>로그인
 			</h2>
 			<hr>
