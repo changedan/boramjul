@@ -49,7 +49,7 @@
 			<div class="container">
 				<div id="menu-wrapper">
 					<ul class="menu-first">
-						<li><a href="#Bestseller">베스트셀러</a></li>
+						<li><a href="booklist.jsp">베스트셀러</a></li>
 						<li><a href="#Newbooks">신간도서</a></li>
 						<li><a href="#our-team">자유게시판</a></li>
 					</ul>

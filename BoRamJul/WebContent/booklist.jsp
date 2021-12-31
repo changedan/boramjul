@@ -11,8 +11,8 @@
 	pageEncoding="UTF-8"%>
 
 <%	
-	memberDTO dto = (memberDTO)session.getAttribute("dto");
 	TBookDTO book = (TBookDTO) request.getAttribute("book");
+	memberDTO dto = (memberDTO)session.getAttribute("dto");
 %>
 
 <!DOCTYPE html>
@@ -42,7 +42,7 @@
 	height: 140px;
 	padding-top: 30px;
 	padding-bottom: 30px;
-	margin-left:350px;
+	margin-left:600px;
 }
 
 .rank_tab_bl {
@@ -63,13 +63,13 @@
 		<div class="container">
 			<nav id="nav_header">
 				<div id="nav_title">
-					<a href="#">북작북작</a>
+					<a href="main.jsp">북작북작</a>
 				</div>
 				<div id="nav_login">
 					<%
 						if (dto == null) {
 					%>
-					<a href="#" onclick="openlogin()"
+					<a href="main.jsp" onclick="openlogin()"
 						style="font-size: 20px; font-weight: bold;">로그인&nbsp;&nbsp;&nbsp;</a>
 					<a href="#" onclick="openjoin()"
 						style="font-size: 20px; font-weight: bold;">회원가입</a>
@@ -90,7 +90,7 @@
 			<div class="container">
 				<div id="menu-wrapper">
 					<ul class="menu-first">
-						<li><a href="#Bestseller">베스트셀러</a></li>
+						<li><a href="booklist.jsp">베스트셀러</a></li>
 						<li><a href="#Newbooks">신간도서</a></li>
 						<li><a href="#our-team">자유게시판</a></li>
 					</ul>
@@ -107,14 +107,14 @@
 	<h1 style="text-align: center; margin: 30px;">베스트셀러</h1>
 		<div class="rank_tab" style="background-color: rgb(248, 246, 234)">
 		<div class="th_img" style="display: inline-block;">
-			<img src="<%=book.getBookCover()%>">
+			<img src="images/book/nb1.jpg">
 		</div>
 		<div class="info_tab_bl">
 			<ul>
-				<li style="padding-top: 55px;"><%=book.getBookTitle()%></li><br>
-				<li><%=book.getBookAuthor()%> 지음</li><br>
-				<li><%=book.getBookPublisher()%></li><br>
-				<li><%=book.getBookDate()%></li><br>
+				<li style="padding-top: 55px;"></li><br>
+				<li>도서1</li><br>
+				<li>도서2</li><br>
+				<li>도서3</li>
 			</ul>
 		</div>
 	</div>
