@@ -40,7 +40,9 @@ hr {
 	margin-bottom: 1px;
 	padding: 1px;
 }
-
+.book_info ul li{
+	padding: 2px;
+}
 .book_tag li {
 	margin-right: 10px;
 	padding: 3px;
@@ -229,20 +231,27 @@ hr {
 		<!--책 정보-->
 		<div class="book_info"
 			style="width: 800px; height: 700px; display: inline-block; border-left: 1px solid gray; margin-bottom: 5px;">
-			<br> <br> <br> <br> <br>
+			
 			<button onclick="reviewOn()"
 				style="font-size: 18px; align-content: center; position: relative; padding: 5px; left: 650px; width: 120px; height: 35px; background-color: rgb(127, 226, 27); color: white; cursor: pointer;">
 				<b>책평가하기</b>
 			</button>
 			<ul
 				style="font-size: 18px; list-style: none; margin-left: 40px; margin-bottom: 0px; padding: 1px;">
-				<li>저자 <%=book.getBookAuthor()%></li>
-				<li>출판사 <%=book.getBookPublisher()%></li>
-				<li>출간일 <%=book.getBookDate()%></li>
-				<li>목차<br> <%=book.getBookContent()%></li>
-				<li style="overflow:hidden; max-width: 100px;">개요 <%=book.getBookBrief()%></li>
+				<li>저자 : <%=book.getBookAuthor()%></li>
+				<br>
+				<li>출판사 : <%=book.getBookPublisher()%></li>
+				<br>
+				<li>출간일 : <%=book.getBookDate()%></li>
+				<br>
+				<li>목차 : <br> <%=book.getBookContent()%></li>
+				<br>
+				<li>개요 : </li>
+				<li style="overflow:auto; width: 750px; height:36px;"><%=book.getBookBrief()%></li>
 			</ul>
+			
 			<!--도서 해쉬태그-->
+			<br>
 			<ul class=book_tag
 				style="list-style: none; margin-left: 40px; margin-bottom: 20px; padding-left: 0px; display: inline-flex;">
 				<li>#추리소설</li>
