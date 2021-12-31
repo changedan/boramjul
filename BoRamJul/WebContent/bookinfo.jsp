@@ -15,7 +15,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEST</title>
+<title>보람줄-북작북작</title>
 <link rel="stylesheet" href="style.css">
 <style>
 hr {
@@ -224,7 +224,7 @@ hr {
 		</div>
 		<!-- /.main-header -->
 	</div>
-	<hr class="hr_main">
+	<hr class="hr_main" style="width:80%;">
 
 	<div class="book_main">
 		<!--도서 이미지-->
@@ -238,7 +238,7 @@ hr {
 		</div>
 		<!--책 정보-->
 		<div class="book_info"
-			style="width: 800px; height: 700px; display: inline-block; border-left: 1px solid gray; margin-bottom: 5px;">
+			style="width: 800px; height: 800px; display: inline-block; border-left: 1px solid gray; margin-bottom: 5px;">
 			
 			<button onclick="reviewOn()"
 				style="font-size: 18px; align-content: center; position: relative; padding: 5px; left: 650px; width: 120px; height: 35px; background-color: rgb(127, 226, 27); color: white; cursor: pointer;">
@@ -255,7 +255,7 @@ hr {
 				<li>목차 : <br> <%=book.getBookContent()%></li>
 				<br>
 				<li>개요 : </li>
-				<li style="overflow:auto; width: 750px; height:36px;"><%=book.getBookBrief()%></li>
+				<li><p style="overflow:auto; margin-top:10px; margin-bottom:10px; width: 750px; height:72px; line-height: 30px;"><%=book.getBookBrief()%></p></li>
 			</ul>
 			
 			<!--도서 해쉬태그-->

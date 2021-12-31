@@ -12,7 +12,7 @@
 
 <%
 	memberDTO dto = (memberDTO) session.getAttribute("dto");
-TBookDTO book = (TBookDTO) request.getAttribute("book");
+	TBookDTO book = (TBookDTO) request.getAttribute("book");
 %>
 <%
 	TBookDAO dao = new TBookDAO();
@@ -68,7 +68,7 @@ TBookDTO book = (TBookDTO) request.getAttribute("book");
 		<div class="container">
 			<nav id="nav_header">
 				<div id="nav_title">
-					<a href="#">북작북작</a>
+					<a href="main.jsp">북작북작</a>
 				</div>
 				<div id="nav_login">
 					<%
