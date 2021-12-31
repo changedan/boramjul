@@ -195,7 +195,7 @@ hr {
 		<div class="container">
 			<nav id="nav_header">
 				<div id="nav_title">
-					<a href="#">북작북작</a>
+					<a href="main.jsp">북작북작</a>
 				</div>
 				<div id="nav_login">
 							<%if (dto == null){%>
