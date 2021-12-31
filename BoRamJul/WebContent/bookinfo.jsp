@@ -527,7 +527,6 @@ hr {
     			}
     		});
     	});
-    	
 	</script>
 </body>
 </html>
