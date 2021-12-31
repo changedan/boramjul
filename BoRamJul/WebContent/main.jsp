@@ -1,3 +1,4 @@
+<%@page import="com.DTO.memberDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.DAO.TBookDAO"%>
 <%@page import="com.vo.TBookDTO"%>
@@ -10,8 +11,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	Connection conn = null;
-ResultSet rs = null;
+	memberDTO dto = (memberDTO)session.getAttribute("dto"); 
 %>
 
 <!DOCTYPE html>
@@ -34,10 +34,15 @@ ResultSet rs = null;
 				<div id="nav_title">
 					<a href="#">북작북작</a>
 				</div>
-				<div id="nav_login">
-					<a href="#" onclick="openlogin()" id="a_login">로그인</a> <a href="#"
-						onclick="openjoin()">회원가입</a>
-				</div>
+					<div id="nav_login">
+							<%if (dto == null){%>
+							<a href="#" onclick="openlogin()" style="font-size: 20px; font-weight: bold;">로그인&nbsp;&nbsp;&nbsp;</a>
+							<a href="#" onclick="openjoin()"style="font-size: 20px; font-weight: bold;">회원가입</a>
+							<%}else {%>
+							<a href ="LogoutCon" style="font-size: 20px; font-weight: bold;">로그아웃&nbsp;&nbsp;&nbsp;</a>
+							<a href="#" onclick="openinfo()"style="font-size: 20px; font-weight: bold;">회원정보[닉네임:<%=dto.getMbNick()%>]</a>
+							<%} %>  
+					</div>
 			</nav>
 		</div>
 		<div class="main-header">
@@ -293,25 +298,22 @@ ResultSet rs = null;
 				BZBZ<br>회원가입
 			</h2>
 			<hr>
-			<form action="#" method="post">
-				<input class="mainInfojoin" type="text" placeholder="ID를 입력해주세요">
-				<button onclick="">중복확인</button>
-				<input class="mainInfojoin" type="password"
-					placeholder="비밀번호를 입력해주세요"> <br> <input
-					class="mainInfojoin" type="text" placeholder="사용하실 닉네임을 입력해주세요">
-				<button onclick="">중복확인</button>
-				<br> <label for="gen" style="margin-left: 35px;">성별<br>
-					<input id="gen" type="radio" style="margin-left: 50px;" name="성별"
-					value="남">남 <input id="gen" type="radio" name="성별"
-					value="여">여
-				</label><br> <br> <label for="age" style="margin-left: 35px;">연령<br>
-					<input id="age" type="radio" style="margin-left: 50px;" name="연령"
-					value="10">10대 <input id="age" type="radio" name="연령"
-					value="20">20대 <input id="age" type="radio" name="연령"
-					value="30">30대<br> <input id="age" type="radio"
-					style="margin-left: 50px;" name="연령" value="40">40대 <input
-					id="age" type="radio" name="연령" value="50">50대 <input
-					id="age" type="radio" name="연령" value="60">60대 이상
+			<form action="JoinCon" method="post">
+				<input class="mainInfojoin" type="text" name="mb_id" placeholder="ID를 입력해주세요">
+					<button onclick="">중복확인</button>
+					<input class="mainInfojoin" type="password" name="mb_pw" placeholder="비밀번호를 입력해주세요"> <br> 
+					<input class="mainInfojoin" type="text" name="mb_nick" placeholder="사용하실 닉네임을 입력해주세요">
+					<button onclick="">중복확인</button>
+					<br> <label for="gen" style="margin-left: 35px;">성별<br>
+						<input name="mb_gender" type="radio" style="margin-left: 50px;" name="성별" value="M">남 
+						<input name="mb_gender" type="radio" name="성별" value="F">여
+					</label><br> <br> <label for="age" style="margin-left: 35px;">연령<br>
+						<input id="age" name="mb_age" type="radio" style="margin-left: 50px;" value="10">10대
+						<input id="age" name="mb_age" type="radio" value="20">20대 
+						<input id="age" name="mb_age" type="radio" value="30">30대<br> 
+						<input id="age" name="mb_age" type="radio" style="margin-left: 50px;" value="40">40대 
+						<input id="age" name="mb_age" type="radio" value="50">50대 
+						<input id="age" name="mb_age" type="radio" value="60">60대 이상
 				</label><br> <br>
 				<hr>
 				<input type="submit" class="joinsub" value="회원가입을 완료합니다"> <br>
@@ -326,10 +328,9 @@ ResultSet rs = null;
 				BZBZ<br>로그인
 			</h2>
 			<hr>
-			<form action="#" method="post">
-				<input id="loginId" class="mainInfologin" type="text"
-					placeholder="ID를 입력해주세요"> <input id="loginPw"
-					class="mainInfologin" type="password" placeholder="비밀번호를 입력해주세요">
+					<form action="LoginCon" method="post"> 
+						<input id="loginId" class="mainInfologin" type="text" name="mb_id" placeholder="ID를 입력해주세요"> 
+						<input id="loginPw" class="mainInfologin" type="password" name="mb_pw" placeholder="비밀번호를 입력해주세요">
 				<br>
 				<hr>
 				<input type="submit" class="loginsub" value="로그인"> <br>
