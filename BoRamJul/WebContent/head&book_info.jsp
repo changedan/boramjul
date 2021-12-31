@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.vo.TBookDTO"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%
+	TBookDTO book = (TBookDTO) request.getAttribute("book");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -180,8 +186,7 @@ hr {
 </head>
 <body class="site-main" id="sTop" style="width: 1500px;">
 	<!-- /.site-header -->
-	<div class="site-header"
-		style="display: block; margin-left: 300px;">
+	<div class="site-header" style="display: block; margin-left: 300px;">
 		<div class="container">
 			<nav id="nav_header">
 				<div id="nav_title">
@@ -215,22 +220,23 @@ hr {
 		<!--도서 이미지-->
 		<div class="book_img"
 			style="display: inline-block; width: 420px; height: 700px; margin-left: 40px; margin-right: 40px; margin-top: 0px; margin-bottom: 5px; align-content: center; padding-top: 0px;">
-			<br><br>
+			<br> <br>
 			<h2
-				style="margin-right: 0px; margin-top: 0px; margin-bottom: 35px; width: 420px; text-align: center; font-size: 40px;">도서명</h2>
-			<img src="#" style="width: 420px; height: 560px; border-radius: 30%;">
+				style="margin-right: 0px; margin-top: 0px; margin-bottom: 35px; width: 420px; text-align: center; font-size: 40px;"><%=book.getBookTitle() %></h2>
+			<img src="<%=book.getBookCover() %>"
+				style="width: 420px; height: 560px; border-radius: 30%;">
 		</div>
 		<!--책 정보-->
 		<div class="book_info"
-			style="width: 800px; height: 700px; display: inline-block; border-left: 1px solid gray; margin-bottom: 5px;"> 
-			<br><br><br><br><br>
+			style="width: 800px; height: 700px; display: inline-block; border-left: 1px solid gray; margin-bottom: 5px;">
+			<br> <br> <br> <br> <br>
 			<button onclick="reviewOn()"
 				style="font-size: 18px; align-content: center; position: relative; padding: 5px; left: 650px; width: 120px; height: 35px; background-color: rgb(127, 226, 27); color: white; cursor: pointer;">
 				<b>책평가하기</b>
 			</button>
 			<ul
 				style="font-size: 18px; list-style: none; margin-left: 40px; margin-bottom: 0px; padding: 1px;">
-				<li>저자</li>
+				<li>저자 <%=book.getBookAuthor()%></li>
 				<li>출판사</li>
 				<li>출간일</li>
 				<li>목차</li>
@@ -285,7 +291,7 @@ hr {
 					</ul>
 				</div>
 			</div>
-			
+
 			<!--리뷰창 오버레이-->
 			<div id="review_over"
 				style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); display: none; width: 700px; height: 630px; background-color: white; border: 2px solid black;">
@@ -347,7 +353,7 @@ hr {
 					</div>
 					<hr>
 					<input type="submit" value="작성완료"
-						style="display: inline-block; position:relative; top: 20px; color: white; font-weight: bold; background-color: rgb(78, 221, 78);">
+						style="display: inline-block; position: relative; top: 20px; color: white; font-weight: bold; background-color: rgb(78, 221, 78);">
 				</form>
 			</div>
 		</div>
@@ -499,6 +505,50 @@ hr {
 		function close_review() {
 			document.getElementById("review_over").style.display = "none";
 		}
+    	$(function(){
+    		$.ajax({
+    			url:'http://172.30.1.51:5021/',
+    			dataType:'json',
+    			data:{
+    				title:`<%=book.getBookTitle() %>`,
+    				author:`<%=book.getBookTitle() %>`
+    			},
+    			async : false,
+    			success:function(result){
+    				console.log(result);
+    				
+    				let content = '';
+    				
+ 					for(let i=0; i<result.length; i++){
+ 						content += '<p><a href="'+blog_result[i].link+'">'+blog_result[i].title+'</a></p>';
+ 					}	
+    				
+    				$('#blog_search').html(content);
+    			}
+    		});
+    	});
+    	$(function(){
+    		$.ajax({
+    			url:'http://172.30.1.51:5021/',
+    			dataType:'json',
+    			data:{
+    				title:`<%=book.getBookTitle() %>`,
+    				author:`<%=book.getBookTitle() %>`
+    			},
+    			async : false,
+    			success:function(result){
+    				console.log(result);
+    				
+    				let content = '';
+    				
+ 					for(let i=0; i<result.length; i++){
+ 						content += '<p><a href="'+news_result[i].link+'">'+news_result[i].title+'</a></p>';
+ 					}	
+    				
+    				$('#news_search').html(content);
+    			}
+    		});
+    	});
 	</script>
 </body>
 </html>
