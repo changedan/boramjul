@@ -427,7 +427,6 @@ hr {
 					<ul>
 						<li style="margin-top: 5px;">블로그 게시글 제목</li>
 						<li>게시글 요약</li>
-						<li>블로그명</li>
 					</ul>
 				</div>
 			</div>
@@ -439,7 +438,6 @@ hr {
 					<ul>
 						<li style="margin-top: 5px;">블로그 게시글 제목</li>
 						<li>게시글 요약</li>
-						<li>블로그명</li>
 					</ul>
 				</div>
 			</div>
@@ -453,14 +451,10 @@ hr {
 					<ul>
 						<li style="margin-top: 5px;">기사 제목</li>
 						<li>기사글 요약</li>
-						<li>보도매체</li>
 					</ul>
 				</div>
 			</div>
 			<div class="info_tab">
-				<div class="th_img" style="display: inline-block;">
-					<img src="">
-				</div>
 				<div class="info_tab_bl">
 					<ul>
 						<li style="margin-top: 5px;">기사 제목</li>
@@ -507,6 +501,8 @@ hr {
 			</div>
 		</div>
 	</div>
+	
+	<script src="js/jquery-3.6.0.min.js"></script>
 	<script>
 		function blogOn() {
 			document.getElementById("blog").style.display = "block";
@@ -530,17 +526,25 @@ hr {
     				title:`<%=book.getBookTitle() %>`,
     				author:`<%=book.getBookTitle() %>`
     			},
-    			async : false,
     			success:function(result){
     				console.log(result);
     				
-    				let content = '';
+    				let blog = result.blog;
+    				let news = result.news;
     				
- 					for(let i=0; i<result.length; i++){
- 						content += '<p><a href="'+result[i].link+'">'+result[i].title+'</a></p>';
+    				
+    				let blog_content = '';
+    				let news_content = '';
+    				
+ 					for(let i=0; i<blog.length; i++){
+ 						blog_content += '<p><a href="'+blog[i].link+'">'+blog[i].title+'</a></p>';
+ 					}	
+ 					
+ 					for(let i=0; i<news.length; i++){
+ 						news_content += '<p><a href="'+news[i].link+'">'+news[i].title+'</a></p>';
  					}	
     				
-    				$('#blog_search').html(content);
+    				$('#blog_search').html(content); 
     			}
     		});
     	});
