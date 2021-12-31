@@ -1,17 +1,11 @@
+<%@page import="com.vo.TBookDTO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
-	Connection conn = null;
-ResultSet rs = null;
-String title = request.getParameter("title");
-String author = request.getParameter("author");
-String cover = request.getParameter("cover");
-System.out.println(title);
-System.out.println(author);
-System.out.println(cover);
+	TBookDTO book = (TBookDTO) request.getAttribute("book");
 %>
 
 <!DOCTYPE html>
@@ -36,8 +30,8 @@ System.out.println(cover);
                width: 500px; height: 750px;
                margin-left: 70px; border-right: 1px solid gray;
                align-content: center;">
-        <h2 style="width: 300px; text-align: center;"><%=title %></h2>
-        <img src="<%=cover %>" style="width: 420px; height: 560px;">
+        <h2 style="width: 300px; text-align: center;"><%=book.getBookTitle() %></h2>
+        <img src="<%=book.getBookCover() %>" style="width: 420px; height: 560px;">
     </div>
     <div class="book_info" style="display: inline-block;">
         <button onclick="" style="font-size: 15px; align-content: center;
@@ -48,7 +42,7 @@ System.out.println(cover);
         <br>
         <br>
         <ul style="font-size: 20px; list-style: none;">
-            <li>저자 <%=author%> </li>
+            <li>저자 <%=book.getBookAuthor()%> </li>
             <li>출판사</li>
             <li>출간일</li>
             <li>목차</li>
@@ -83,15 +77,40 @@ System.out.println(cover);
         <div class="social" style="display: inline-block">
 			<h3>블로그</h3>
 				<div id="blog_search">
-				{{blog_search}}
+				
 				</div>
         	<h3>뉴스</h3>
         		<div id="news_search">
-        		{{news}}
+        		
         		</div>
         </div>
         
     </div>
     <hr>
+    
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+    	$(function(){
+    		$.ajax({
+    			url:'http://172.30.1.51:5021/',
+    			dataType:'json',
+    			data:{
+    				title:`<%=book.getBookTitle() %>`,
+    				author:`<%=book.getBookTitle() %>`
+    			},
+    			success:function(result){
+    				console.log(result);
+    				
+    				let content = '';
+    				
+ 					for(let i=0; i<result.length; i++){
+ 						content += '<p><a href="'+result[i].link+'">'+result[i].title+'</a></p>';
+ 					}	
+    				
+    				$('#blog_search').html(content);
+    			}
+    		});
+    	});
+    </script>
 </body>
 </html>

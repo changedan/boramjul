@@ -65,18 +65,15 @@ ResultSet rs = null;
 				<ul class="slides">
 					<%
 						TBookDAO dao = new TBookDAO();
-					ArrayList<String> arr = dao.selectCover(); // 이미지
-					ArrayList<String> arr1 = dao.selectTitle(); // 제목
-					ArrayList<String> arr2 = dao.selectBRIEF(); // 요약
-					ArrayList<String> arr3 = dao.selectAuthor(); // 저자
+					ArrayList<TBookDTO> arr = dao.selectBookAll();
 					%>
 					<%
 						for (int i = 0; i < 8; i++) {
 					%>
 					<li class="slider-list">
-						<div class="overlay"></div> <img src="<%=arr.get(i)%>" alt="">
-						<div class="slider-title"><%=arr1.get(i) %></div>
-						<div class="slider-berief"><%=arr2.get(i) %></div>
+						<div class="overlay"></div> <img src="<%=arr.get(i).getBookCover()%>" alt="">
+						<div class="slider-title"><%=arr.get(i).getBookTitle() %></div>
+						<div class="slider-berief"><%=arr.get(i).getBookBrief() %></div>
 						<div class="slider-caption visible-md visible-lg"></div>
 					</li>
 					<%
@@ -114,13 +111,12 @@ ResultSet rs = null;
 					for (int i = 0; i < 8; i++) {
 				%>
 				<div class="portfolio-item col-md-3 col-sm-6">
-					<a
-						href="bookinfo.jsp?title=<%=arr1.get(i)%>&cover=<%=arr.get(i)%>&author=<%=arr3.get(i)%>">
+					<a href="BookInfo?no=<%=arr.get(i).getBookSeq()%>">
 						<div class="portfolio-thumb">
-							<img src="<%=arr.get(i)%>" alt="">
+							<img src="<%=arr.get(i).getBookCover()%>" alt="">
 							<div class="portfolio-overlay">
-								<h3><%=arr1.get(i)%></h3>
-								<p><%=arr2.get(i)%></p>
+								<h3><%=arr.get(i).getBookTitle()%></h3>
+								<p><%=arr.get(i).getBookBrief()%></p>
 								<a href="images/book/book1.jpg" data-rel="lightbox"
 									class="expand"> <i class="fa fa-search"></i>
 								</a>

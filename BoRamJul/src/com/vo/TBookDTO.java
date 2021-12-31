@@ -2,62 +2,67 @@ package com.vo;
 
 import java.util.Date;
 
-// Ã¥ Á¤º¸ Å×ÀÌºí 
+// Ã¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ 
 public class TBookDTO {
 
-    // Ã¥ ¼ø¹ø 
-    private Double bookSeq;
-
-    // Ã¥ Á¦¸ñ 
+    private int bookSeq;
     private String bookTitle;
-
-    // Ã¥ Ãâ°£ÀÏ 
     private Date bookDate;
-
-    // Ã¥ ÀúÀÚ 
     private String bookAuthor;
-
-    // Ã¥ ¿ä¾à 
     private String bookBrief;
-
-    // Ã¥ Ä«Å×°í¸® 
     private String bookCat;
-
-    // Ã¥ ÃâÆÇ»ç 
     private String bookPublisher;
-
-    // Ã¥ ÂÊ¼ö 
-    private Double bookPages;
-
-    // Ã¥ ¸ñÂ÷ 
+    private int bookPages;
     private String bookContent;
-
-    // Ã¥ Ç¥ÁöÀÌ¹ÌÁö 
     private String bookCover;
-
-    // Ã¥ ÇØ½ÃÅÂ±× 
     private String bookHashtag;
-
-    // µî·ÏÀÚ ¾ÆÀÌµð 
     private String mbId;
-
-    // Ã¥ ±¸ºÐ 
     private String bookKind;
-
-    // Ã¥ ¼øÀ§ 
-    private Double bookRank;
-
-    // Ã¥ »çÀÌÁî °¡·Î 
+    private int bookRank;
     private Double bookSizeW;
-
-    // Ã¥ »çÀÌÁî ¼¼·Î 
     private Double bookSizeH;
+    
+    
+    public TBookDTO(int bookSeq, String bookTitle, String bookBrief, String bookCover) {
+		this.bookSeq = bookSeq;
+		this.bookTitle = bookTitle;
+		this.bookBrief = bookBrief;
+		this.bookCover = bookCover;
+	}
+    
 
-    public Double getBookSeq() {
+	public TBookDTO(int bookSeq, String bookTitle, Date bookDate, String bookAuthor, String bookBrief,
+			String bookCat, String bookPublisher, int bookPages, String bookContent, String bookCover,
+			String bookHashtag, String bookKind, int bookRank, Double bookSizeW, Double bookSizeH) {
+		this.bookSeq = bookSeq;
+		this.bookTitle = bookTitle;
+		this.bookDate = bookDate;
+		this.bookAuthor = bookAuthor;
+		this.bookBrief = bookBrief;
+		this.bookCat = bookCat;
+		this.bookPublisher = bookPublisher;
+		this.bookPages = bookPages;
+		this.bookContent = bookContent;
+		this.bookCover = bookCover;
+		this.bookHashtag = bookHashtag;
+		this.bookKind = bookKind;
+		this.bookRank = bookRank;
+		this.bookSizeW = bookSizeW;
+		this.bookSizeH = bookSizeH;
+	}
+
+
+
+	public TBookDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public int getBookSeq() {
         return bookSeq;
     }
 
-    public void setBookSeq(Double bookSeq) {
+    public void setBookSeq(int bookSeq) {
         this.bookSeq = bookSeq;
     }
 
@@ -109,11 +114,11 @@ public class TBookDTO {
         this.bookPublisher = bookPublisher;
     }
 
-    public Double getBookPages() {
+    public int getBookPages() {
         return bookPages;
     }
 
-    public void setBookPages(Double bookPages) {
+    public void setBookPages(int bookPages) {
         this.bookPages = bookPages;
     }
 
@@ -157,11 +162,11 @@ public class TBookDTO {
         this.bookKind = bookKind;
     }
 
-    public Double getBookRank() {
+    public int getBookRank() {
         return bookRank;
     }
 
-    public void setBookRank(Double bookRank) {
+    public void setBookRank(int bookRank) {
         this.bookRank = bookRank;
     }
 
@@ -181,7 +186,7 @@ public class TBookDTO {
         this.bookSizeH = bookSizeH;
     }
 
-    // TBook ¸ðµ¨ º¹»ç
+    // TBook ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void CopyData(TBookDTO param)
     {
         this.bookSeq = param.getBookSeq();
