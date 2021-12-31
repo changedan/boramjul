@@ -98,6 +98,7 @@
     				title:`<%=book.getBookTitle() %>`,
     				author:`<%=book.getBookTitle() %>`
     			},
+    			async : false,
     			success:function(result){
     				console.log(result);
     				
@@ -119,6 +120,7 @@
     				title:`<%=book.getBookTitle() %>`,
     				author:`<%=book.getBookTitle() %>`
     			},
+    			async : false,
     			success:function(result){
     				console.log(result);
     				
