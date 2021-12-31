@@ -76,10 +76,12 @@
 						for (int i = 0; i < 8; i++) {
 					%>
 					<li class="slider-list">
+						<a href="BookInfo?no=<%=arr.get(i).getBookSeq()%>">
 						<div class="overlay"></div> <img src="<%=arr.get(i).getBookCover()%>" alt="">
 						<div class="slider-title"><%=arr.get(i).getBookTitle() %></div>
 						<div class="slider-berief"><%=arr.get(i).getBookBrief() %></div>
 						<div class="slider-caption visible-md visible-lg"></div>
+						</a>
 					</li>
 					<%
 						}
@@ -367,6 +369,18 @@
 
 		});
 	</script>
+	<div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-xs-12 text-left">
+                        <span>보람줄 &copy; 2021 북작북작</span>
+                  </div> <!-- /.text-center -->
+                    <div class="col-md-4 hidden-xs text-right">
+                        <a href="#top" id="go-top">맨 위로</a>
+                    </div> <!-- /.text-center -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /#footer -->
 	<script src="js/vendor/jquery-1.11.0.min.js"></script>
 	<script>
 		window.jQuery
