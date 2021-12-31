@@ -240,7 +240,7 @@ hr {
 				<li>출판사 <%=book.getBookPublisher()%></li>
 				<li>출간일 <%=book.getBookDate()%></li>
 				<li>목차 <%=book.getBookContent()%></li>
-				<li>개요</li>
+				<li>개요 <%=book.getBookBrief()%></li>
 			</ul>
 			<!--도서 해쉬태그-->
 			<ul class=book_tag
@@ -298,8 +298,8 @@ hr {
 				<span class="closebtn" onclick="close_review()" title="닫기"
 					style="position: relative; top: 10px; left: 665px; font-size: 30px; cursor: pointer;">X</span>
 				<h2
-					style="text-align: center; margin-bottom: 0px; font-size: 35px; font-weight: bold;">도서명</h2>
-				<h5 style="text-align: center; margin-top: 0px; font-size: 15px;">저자</h5>
+					style="text-align: center; margin-bottom: 0px; font-size: 35px; font-weight: bold;"><%=book.getBookTitle() %></h2>
+				<h5 style="text-align: center; margin-top: 0px; font-size: 15px;"><%=book.getBookAuthor()%></h5>
 				<form action="#" style="text-align: center;">
 					<hr>
 					<span style="display: inline-block;"> <label for="tag"
@@ -520,35 +520,14 @@ hr {
     				let content = '';
     				
  					for(let i=0; i<result.length; i++){
- 						content += '<p><a href="'+blog_result[i].link+'">'+blog_result[i].title+'</a></p>';
+ 						content += '<p><a href="'+result[i].link+'">'+result[i].title+'</a></p>';
  					}	
     				
     				$('#blog_search').html(content);
     			}
     		});
     	});
-    	$(function(){
-    		$.ajax({
-    			url:'http://172.30.1.51:5021/',
-    			dataType:'json',
-    			data:{
-    				title:`<%=book.getBookTitle() %>`,
-    				author:`<%=book.getBookTitle() %>`
-    			},
-    			async : false,
-    			success:function(result){
-    				console.log(result);
-    				
-    				let content = '';
-    				
- 					for(let i=0; i<result.length; i++){
- 						content += '<p><a href="'+news_result[i].link+'">'+news_result[i].title+'</a></p>';
- 					}	
-    				
-    				$('#news_search').html(content);
-    			}
-    		});
-    	});
+    	
 	</script>
 </body>
 </html>
