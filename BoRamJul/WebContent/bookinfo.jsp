@@ -239,8 +239,8 @@ hr {
 				<li>저자 <%=book.getBookAuthor()%></li>
 				<li>출판사 <%=book.getBookPublisher()%></li>
 				<li>출간일 <%=book.getBookDate()%></li>
-				<li>목차 <%=book.getBookContent()%></li>
-				<li>개요 <%=book.getBookBrief()%></li>
+				<li>목차<br> <%=book.getBookContent()%></li>
+				<li style="overflow:hidden; max-width: 100px;">개요 <%=book.getBookBrief()%></li>
 			</ul>
 			<!--도서 해쉬태그-->
 			<ul class=book_tag
