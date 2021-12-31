@@ -383,7 +383,7 @@ hr {
 		<button class="tab_btn" onclick="newsOn()"
 			style="margin-left: -3px; color: white; background-color: #3f63bf;">뉴스</button>
 		<div id="blog">
-			<div class="info_tab">
+			<!-- <div class="info_tab">
 				<div class="th_img" style="display: inline-block;">
 					<img src="">
 				</div>
@@ -394,56 +394,11 @@ hr {
 						<li>블로그명</li>
 					</ul>
 				</div>
-			</div>
-			<div class="info_tab">
-				<div class="th_img" style="display: inline-block;">
-					<img src="">
-				</div>
-				<div class="info_tab_bl">
-					<ul>
-						<li style="margin-top: 5px;">블로그 게시글 제목</li>
-						<li>게시글 요약</li>
-						<li>블로그명</li>
-					</ul>
-				</div>
-			</div>
-			<div class="info_tab">
-				<div class="th_img" style="display: inline-block;">
-					<img src="">
-				</div>
-				<div class="info_tab_bl">
-					<ul>
-						<li style="margin-top: 5px;">블로그 게시글 제목</li>
-						<li>게시글 요약</li>
-						<li>블로그명</li>
-					</ul>
-				</div>
-			</div>
-			<div class="info_tab">
-				<div class="th_img" style="display: inline-block;">
-					<img src="">
-				</div>
-				<div class="info_tab_bl">
-					<ul>
-						<li style="margin-top: 5px;">블로그 게시글 제목</li>
-						<li>게시글 요약</li>
-					</ul>
-				</div>
-			</div>
-			<div class="info_tab">
-				<div class="th_img" style="display: inline-block;">
-					<img src="">
-				</div>
-				<div class="info_tab_bl">
-					<ul>
-						<li style="margin-top: 5px;">블로그 게시글 제목</li>
-						<li>게시글 요약</li>
-					</ul>
-				</div>
-			</div>
+			</div> -->
+			
 		</div>
 		<div id="news" style="display: none;">
-			<div class="info_tab">
+			<!-- <div class="info_tab">
 				<div class="th_img" style="display: inline-block;">
 					<img src="">
 				</div>
@@ -453,52 +408,8 @@ hr {
 						<li>기사글 요약</li>
 					</ul>
 				</div>
-			</div>
-			<div class="info_tab">
-				<div class="info_tab_bl">
-					<ul>
-						<li style="margin-top: 5px;">기사 제목</li>
-						<li>기사글 요약</li>
-						<li>보도매체</li>
-					</ul>
-				</div>
-			</div>
-			<div class="info_tab">
-				<div class="th_img" style="display: inline-block;">
-					<img src="">
-				</div>
-				<div class="info_tab_bl">
-					<ul>
-						<li style="margin-top: 5px;">기사 제목</li>
-						<li>기사글 요약</li>
-						<li>보도매체</li>
-					</ul>
-				</div>
-			</div>
-			<div class="info_tab">
-				<div class="th_img" style="display: inline-block;">
-					<img src="">
-				</div>
-				<div class="info_tab_bl">
-					<ul>
-						<li style="margin-top: 5px;">기사 제목</li>
-						<li>기사글 요약</li>
-						<li>보도매체</li>
-					</ul>
-				</div>
-			</div>
-			<div class="info_tab">
-				<div class="th_img" style="display: inline-block;">
-					<img src="">
-				</div>
-				<div class="info_tab_bl">
-					<ul>
-						<li style="margin-top: 5px;">기사 제목</li>
-						<li>기사글 요약</li>
-						<li>보도매체</li>
-					</ul>
-				</div>
-			</div>
+			</div> -->
+			
 		</div>
 	</div>
 	
@@ -532,19 +443,30 @@ hr {
     				let blog = result.blog;
     				let news = result.news;
     				
-    				
     				let blog_content = '';
     				let news_content = '';
     				
  					for(let i=0; i<blog.length; i++){
- 						blog_content += '<p><a href="'+blog[i].link+'">'+blog[i].title+'</a></p>';
+ 						blog_content += '<div class="info_tab">'
+ 						blog_content += '<div class="th_img" style="display: inline-block;"><img src=""></div>'
+ 						blog_content += '<div class="info_tab_bl">'
+ 						blog_content += '<ul><li style="margin-top: 5px;"><a href="'+blog[i].link+'">'+blog[i].title+'</a></li>'
+						blog_content += '<li>'+blog[i].description+'</li>'
+						blog_content += '</ul></div></div>';
  					}	
  					
  					for(let i=0; i<news.length; i++){
- 						news_content += '<p><a href="'+news[i].link+'">'+news[i].title+'</a></p>';
+ 						news_content += '<div class="info_tab">'
+ 						news_content += '<div class="th_img" style="display: inline-block;"><img src=""></div>'
+ 	 					news_content += '<div class="info_tab_bl">'
+ 	 					news_content += '<ul><li style="margin-top: 5px;"><a href="'+news[i].link+'">'+news[i].title+'</a></li>'
+ 	 					news_content += '<li>'+news[i].description+'</li>'
+ 	 					news_content += '</ul></div></div>';
  					}	
     				
-    				$('#blog_search').html(content); 
+    				$('#blog').html(blog_content); 
+    				$('#news').html(news_content); 
+    				
     			}
     		});
     	});
