@@ -105,32 +105,10 @@
     				let content = '';
     				
  					for(let i=0; i<result.length; i++){
- 						content += '<p><a href="'+blog_result[i].link+'">'+blog_result[i].title+'</a></p>';
+ 						content += '<p><a href="'+result[i].link+'">'+result[i].title+'</a></p>';
  					}	
     				
     				$('#blog_search').html(content);
-    			}
-    		});
-    	});
-    	$(function(){
-    		$.ajax({
-    			url:'http://172.30.1.51:5021/',
-    			dataType:'json',
-    			data:{
-    				title:`<%=book.getBookTitle() %>`,
-    				author:`<%=book.getBookTitle() %>`
-    			},
-    			async : false,
-    			success:function(result){
-    				console.log(result);
-    				
-    				let content = '';
-    				
- 					for(let i=0; i<result.length; i++){
- 						content += '<p><a href="'+news_result[i].link+'">'+news_result[i].title+'</a></p>';
- 					}	
-    				
-    				$('#news_search').html(content);
     			}
     		});
     	});
