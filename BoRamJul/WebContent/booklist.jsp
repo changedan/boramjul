@@ -10,11 +10,14 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%	
+<%
 	TBookDTO book = (TBookDTO) request.getAttribute("book");
-	memberDTO dto = (memberDTO)session.getAttribute("dto");
+	memberDTO dto = (memberDTO) session.getAttribute("dto");
 %>
-
+<%
+	TBookDAO dao = new TBookDAO();
+	ArrayList<TBookDTO> best = dao.selectbest();
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -42,7 +45,7 @@
 	height: 140px;
 	margin-top: 30px;
 	margin-bottom: 30px;
-	margin-left:500px;
+	margin-left: 500px;
 }
 
 .rank_tab_bl {
@@ -56,6 +59,7 @@
 	margin-top: 0px;
 	margin-bottom: 0px;
 	overflow: hidden;
+}
 </style>
 </head>
 <body>
@@ -104,20 +108,52 @@
 	</div>
 	<!-- /.site-header -->
 	<hr class="hr_main">
-	<h1 style="text-align: center; margin: 30px;">베스트셀러</h1>
+	<div class="book_main">
+		<h1 style="text-align: center; margin: 30px;">베스트셀러</h1>
+		<%
+			for(int i = 0; i < 8; i++) {
+		%>
+		<%if ( i % 2 == 0) { %>
 		<div class="rank_tab" style="background-color: rgb(248, 246, 234)">
-		<div class="th_img" style="display: inline-block;">
-			<img src="images/book/nb1.jpg">
+		
+			<div class="th_img" style="display: inline-block;">
+			
+			
+				<img src="<%=best.get(i).getBookCover() %>">
+			</div>
+			<div class="info_tab_bl">
+			
+				<ul>
+					<li style="padding-top: 55px;">제목 : <%= best.get(i).getBookTitle() %></li>
+					<br>
+					<li>저자 : <%= best.get(i).getBookAuthor() %></li>
+					<br>
+					<li>출판사 : <%= best.get(i).getBookPublisher() %></li>
+				</ul>
+				
+			</div>
 		</div>
-		<div class="info_tab_bl">
-			<ul>
-				<li style="padding-top: 55px;"></li><br>
-				<li>도서1</li><br>
-				<li>도서2</li><br>
-				<li>도서3</li>
-			</ul>
-		</div>
+		<%} %>
+		<%if ( i % 2 == 1) { %>
+		<div class="rank_tab" style="background-color: rgb(248, 226, 234)">
+			<div class="th_img" style="display: inline-block;">
+				<img src="<%=best.get(i).getBookCover() %>">
+			</div>
+			<div class="info_tab_bl">
+				<ul>
+					<li style="padding-top: 55px;">제목 : <%= best.get(i).getBookTitle() %></li>
+					<br>
+					<li>저자 : <%= best.get(i).getBookAuthor() %></li>
+					<br>
+					<li>출판사 : <%= best.get(i).getBookPublisher() %></li>
+				</ul>
+			</div>
+		</div>		
+		<%} %>
+		<%
+			}
+		%>
+		
 	</div>
-
 </body>
 </html>

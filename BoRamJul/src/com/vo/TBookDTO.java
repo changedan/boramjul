@@ -30,6 +30,14 @@ public class TBookDTO {
 		this.book_Cover = book_Cover;
 	}
     
+    public TBookDTO(int book_seq, String book_title, String book_author, String book_cover,String book_publisher) {
+  		this.book_Seq = book_seq;
+  		this.book_Title = book_title;
+  		this.book_Author = book_author;
+  		this.book_Cover = book_cover;
+  		this.book_Publisher = book_publisher;
+  	}
+    
 
 	public TBookDTO(int book_Seq, String book_Title, Date book_Date, String book_Author, String book_Brief,
 			String book_Cat, String book_Publisher, int book_Pages, String book_Content, String book_Cover,
