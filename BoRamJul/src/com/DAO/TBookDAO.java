@@ -69,23 +69,23 @@ public class TBookDAO {
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
-			    int bookSeq = rs.getInt(1);
-			    String bookTitle = rs.getString(2);
-			    Date bookDate = rs.getDate(3);
-			    String bookAuthor = rs.getString(4);
-			    String bookBrief = rs.getString(5);
-			    String bookCat = rs.getString(6);
-			    String bookPublisher = rs.getString(7);
-			    int bookPages = rs.getInt(8);
-			    String bookContent = rs.getString(9);
-			    String bookCover = rs.getString(10);
-			    String bookHashtag = rs.getString(11);
-			    String bookKind = rs.getString(13);
-			    int bookRank = rs.getInt(14);
-			    Double bookSizeW = rs.getDouble(15);
-			    Double bookSizeH = rs.getDouble(16);
+			    int book_Seq = rs.getInt(1);
+			    String book_Title = rs.getString(2);
+			    Date book_Date = rs.getDate(3);
+			    String book_Author = rs.getString(4);
+			    String book_Brief = rs.getString(5);
+			    String book_Cat = rs.getString(6);
+			    String book_Publisher = rs.getString(7);
+			    int book_Pages = rs.getInt(8);
+			    String book_Content = rs.getString(9);
+			    String book_Cover = rs.getString(10);
+			    String book_Hashtag = rs.getString(11);
+			    String book_Kind = rs.getString(13);
+			    int book_Rank = rs.getInt(14);
+			    Double book_SizeW = rs.getDouble(15);
+			    Double book_SizeH = rs.getDouble(16);
 				
-				book = new TBookDTO(bookSeq, bookTitle, bookDate, bookAuthor, bookBrief, bookCat, bookPublisher, bookPages, bookContent, bookCover, bookHashtag, bookKind, bookRank, bookSizeW, bookSizeH);
+				book = new TBookDTO(book_Seq, book_Title, book_Date, book_Author, book_Brief, book_Cat, book_Publisher, book_Pages, book_Content, book_Cover, book_Hashtag, book_Kind, book_Rank, book_SizeW, book_SizeH);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
