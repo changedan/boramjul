@@ -26,6 +26,40 @@
 <link rel="stylesheet" href="style.css">
 <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 <title>보람줄 - 북작북작</title>
+<style>
+	#board{
+		width: 70%;
+		margin-left: auto;
+		margin-right: auto;
+		border-top: 2px solid black;
+		border-bottom: 2px solid black;
+	}
+	#board thead{
+		border-bottom: 1px solid black;
+		background-color: rgb(234, 245, 248);
+		height: 50px;
+	}
+	#board thead tr th{
+		text-align: center;
+		vertical-align: middle;
+		height: 30px;
+	}
+	#board tbody{
+		border-bottom: 1px dotted black;
+	}
+	#board tbody tr{
+		height: 70px;		
+	}
+	#board tbody tr th{
+		text-align: center;
+		vertical-align: middle;		
+	}
+	.write{
+		position: absolute;
+		right: 15%;
+		padding: 8px;
+	}
+</style>
 </head>
 <body class="site-main" id="sTop">
 	<div class="site-header">
@@ -64,5 +98,47 @@
 	</div>
 	<!-- /.site-header -->
 	<hr class="hr_main">
+	<h1 style="text-align: center;">자유게시판</h1>
+	<div>
+		<table table id="board" border="0" class="table table-hover">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th style="width: 80px;">미리보기</th>
+					<th style="width: 420px;">제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+					<th>조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>1</th>
+					<th>
+						<img src="" style="width: 60px; height: 60px; border-radius: 10%;">
+					</th>
+					<th><a href="">프로젝트 하다가 선생이랑 싸운 썰 푼다</a></th>
+					<th>Mr.P</th>
+					<th>2022.01.02</th>
+					<th>37</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<button class="write">글쓰기</button>
+		<br><br>
+			<div class="text-center">
+				<ul class="pagination">
+					<li><a href="#">◀</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">▶</a></li>
+				</ul>
+			</div>
+	</div>
 </body>
 </html>
