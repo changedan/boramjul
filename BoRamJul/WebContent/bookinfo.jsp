@@ -217,6 +217,7 @@
                     <ul class="menu-first">
                         <li><a href="#Bestseller">베스트셀러</a></li>
                         <li><a href="#Newbooks">신간도서</a></li>
+                        <li><a href="steadylist.jsp">스테디셀러</a>
                         <li><a href="#our-team">자유게시판</a></li>
                     </ul>
                     <!-- /.main-menu -->
@@ -304,8 +305,8 @@
             </div>
 
             <!--리뷰창 오버레이-->
-            <div id="review_over" style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); display: none; width: 700px; height: 630px; background-color: white; border: 2px solid black;">
-                <span class="closebtn" onclick="close_review()" title="닫기" style="position: relative; top: 10px; left: 665px; font-size: 30px; cursor: pointer;">X</span>
+            <div id="review_over" style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); display: none; width: 800px; max-height: 700px; background-color: white; border: 2px solid black;">
+                <span class="closebtn" onclick="close_review()" title="닫기" style="position: relative; top: 20px; left: 750px; font-size: 30px; cursor: pointer;">X</span>
                 <h2 style="text-align: center; margin-bottom: 0px; font-size: 35px; font-weight: bold;"><%=book.getBookTitle() %></h2>
                 <h5 style="text-align: center; margin-top: 0px; font-size: 15px;"><%=book.getBookAuthor()%></h5>
                 <form action="#" style="text-align: center;">
@@ -336,7 +337,7 @@
                         </div>
                     </div>
                     <hr>
-                    <input type="submit" value="작성완료" style="display: inline-block; position: relative; top: 20px; color: white; font-weight: bold; background-color: rgb(78, 221, 78);">
+                    <input type="submit" value="작성완료" style="display: inline-block; position: relative; top: 20px; color: white; margin-bottom: 50px;font-weight: bold; background-color: rgb(78, 221, 78);">
                 </form>
             </div>
         </div>
