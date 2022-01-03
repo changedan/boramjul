@@ -239,10 +239,12 @@
         </div>
         <!--책 정보-->
         <div class="book_info" style="width: 800px; height: 800px; display: inline-block; border-left: 1px solid gray; margin-bottom: 5px;">
-
+			<%if (dto==null) {%>
+			<%}else if(dto!=null){%>
             <button onclick="reviewOn()" style="font-size: 18px; align-content: center; position: relative; padding: 5px; left: 650px; width: 120px; height: 35px; background-color: rgb(127, 226, 27); color: white; cursor: pointer;">
                 <b>책평가하기</b>
             </button>
+            <%}%>
             <ul style="font-size: 18px; list-style: none; margin-left: 40px; margin-bottom: 0px; padding: 1px;">
                 <li>저자 : <%=book.getBookAuthor()%></li>
                 <br>
@@ -308,30 +310,41 @@
                 <span class="closebtn" onclick="close_review()" title="닫기" style="position: relative; top: 20px; left: 750px; font-size: 30px; cursor: pointer;">X</span>
                 <h2 style="text-align: center; margin-bottom: 0px; font-size: 35px; font-weight: bold;"><%=book.getBookTitle() %></h2>
                 <h5 style="text-align: center; margin-top: 0px; font-size: 15px;"><%=book.getBookAuthor()%></h5>
-                <form action="#" style="text-align: center;">
+                <form action="ReviewCon" method="post" style="text-align: center;">
                     <hr>
-                    <span style="display: inline-block;"> <label for="tag" style="font-size: 15px;"><strong>도서 태그</strong> <input name="tag" type="text" placeholder="#재미" style="width: 90px; margin-left: 10px; text-align: center;">
-                            <input name="tag" type="text" placeholder="#스릴" style="width: 90px; margin-left: 10px; text-align: center;">
-                            <input name="tag" type="text" placeholder="#유용한" style="width: 90px; margin-left: 10px; text-align: center;">
+                    <span style="display: inline-block;"> 
+                    	<label for="tag" style="font-size: 15px;"><strong>도서 태그</strong> 
+                    		<input name="tag1" type="text" placeholder="#재미" style="width: 90px; margin-left: 10px; text-align: center;">
+                            <input name="tag2" type="text" placeholder="#스릴" style="width: 90px; margin-left: 10px; text-align: center;">
+                            <input name="tag3" type="text" placeholder="#유용한" style="width: 90px; margin-left: 10px; text-align: center;">
                         </label>
                     </span>
                     <hr>
-                    <textarea cols="100" rows="15" placeholder="서평을 남겨주세요" maxlength="1000" style="resize: none; border: 1px dotted gray; display: inline-block; margin: 5px;"></textarea>
+                    <textarea cols="100" rows="15" placeholder="서평을 남겨주세요" maxlength="1000" name="review_content" style="resize: none; border: 1px dotted gray; display: inline-block; margin: 5px;"></textarea>
                     <hr>
 
                     <div class="starpoint_wrap" style="display: inline-block;">
                         <div class="starpoint_box">
                             <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
                             <label for="starpoint_2" class="label_star" title="1"><span class="blind">1점</span></label>
-                            <label for="starpoint_3" class="label_star" title="1.5"><span class="blind">1.5점</span></label>
-                            <label for="starpoint_4" class="label_star" title="2"><span class="blind">2점</span></label>
-                            <label for="starpoint_5" class="label_star" title="2.5"><span class="blind">2.5점</span></label>
-                            <label for="starpoint_6" class="label_star" title="3"><span class="blind">3점</span></label>
-                            <label for="starpoint_7" class="label_star" title="3.5"><span class="blind">3.5점</span></label>
-                            <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
-                            <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
-                            <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
-                            <input type="radio" name="starpoint" id="starpoint_1" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_2" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_3" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_4" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_5" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_6" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_7" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_8" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_9" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_10" class="star_radio">
+                            <label for="starpoint_3" class="label_star" title="1.5" ><span class="blind">1.5점</span></label>
+                            <label for="starpoint_4" class="label_star" title="2" ><span class="blind">2점</span></label>
+                            <label for="starpoint_5" class="label_star" title="2.5" ><span class="blind">2.5점</span></label>
+                            <label for="starpoint_6" class="label_star" title="3" ><span class="blind">3점</span></label>
+                            <label for="starpoint_7" class="label_star" title="3.5" ><span class="blind">3.5점</span></label>
+                            <label for="starpoint_8" class="label_star" title="4" ><span class="blind">4점</span></label>
+                            <label for="starpoint_9" class="label_star" title="4.5" ><span class="blind">4.5점</span></label>
+                            <label for="starpoint_10" class="label_star" title="5" ><span class="blind">5점</span></label>
+                            <input type="radio" name="starpoint" value="0.5" id="starpoint_1" class="star_radio"> 
+                            <input type="radio" name="starpoint" value="1" id="starpoint_2" class="star_radio"> 
+                            <input type="radio" name="starpoint" value="1.5" id="starpoint_3" class="star_radio"> 
+                            <input type="radio" name="starpoint" value="2" id="starpoint_4" class="star_radio"> 
+                            <input type="radio" name="starpoint" value="2.5" id="starpoint_5" class="star_radio"> 
+                            <input type="radio" name="starpoint" value="3" id="starpoint_6" class="star_radio"> 
+                            <input type="radio" name="starpoint" value="3.5" id="starpoint_7" class="star_radio"> 
+                            <input type="radio" name="starpoint" value="4" id="starpoint_8" class="star_radio"> 
+                            <input type="radio" name="starpoint" value="4.5" id="starpoint_9" class="star_radio"> 
+                            <input type="radio" name="starpoint" value="5" id="starpoint_10" class="star_radio">
                             <div class="starpoint_bg"></div>
                         </div>
                     </div>
