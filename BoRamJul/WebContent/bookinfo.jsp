@@ -316,21 +316,21 @@
                         </label>
                     </span>
                     <hr>
-                    <textarea cols="50" rows="15" placeholder="서평을 남겨주세요" maxlength="1000" style="border: 1px dotted gray; display: inline-block; margin: 5px;"></textarea>
+                    <textarea cols="100" rows="15" placeholder="서평을 남겨주세요" maxlength="1000" style="resize: none; border: 1px dotted gray; display: inline-block; margin: 5px;"></textarea>
                     <hr>
 
                     <div class="starpoint_wrap" style="display: inline-block;">
                         <div class="starpoint_box">
-                            <label for="starpoint_1" class="label_star" title="1"><span class="blind">1점</span></label>
-                            <label for="starpoint_2" class="label_star" title="2"><span class="blind">2점</span></label>
-                            <label for="starpoint_3" class="label_star" title="3"><span class="blind">3점</span></label>
-                            <label for="starpoint_4" class="label_star" title="4"><span class="blind">4점</span></label>
-                            <label for="starpoint_5" class="label_star" title="5"><span class="blind">5점</span></label>
-                            <label for="starpoint_6" class="label_star" title="6"><span class="blind">6점</span></label>
-                            <label for="starpoint_7" class="label_star" title="7"><span class="blind">7점</span></label>
-                            <label for="starpoint_8" class="label_star" title="8"><span class="blind">8점</span></label>
-                            <label for="starpoint_9" class="label_star" title="9"><span class="blind">9점</span></label>
-                            <label for="starpoint_10" class="label_star" title="10"><span class="blind">10점</span></label>
+                            <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
+                            <label for="starpoint_2" class="label_star" title="1"><span class="blind">1점</span></label>
+                            <label for="starpoint_3" class="label_star" title="1.5"><span class="blind">1.5점</span></label>
+                            <label for="starpoint_4" class="label_star" title="2"><span class="blind">2점</span></label>
+                            <label for="starpoint_5" class="label_star" title="2.5"><span class="blind">2.5점</span></label>
+                            <label for="starpoint_6" class="label_star" title="3"><span class="blind">3점</span></label>
+                            <label for="starpoint_7" class="label_star" title="3.5"><span class="blind">3.5점</span></label>
+                            <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
+                            <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
+                            <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
                             <input type="radio" name="starpoint" id="starpoint_1" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_2" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_3" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_4" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_5" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_6" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_7" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_8" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_9" class="star_radio"> <input type="radio" name="starpoint" id="starpoint_10" class="star_radio">
                             <div class="starpoint_bg"></div>
                         </div>
