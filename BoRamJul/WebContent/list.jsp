@@ -169,7 +169,7 @@ if (fCount > 0) {
 						<li><a href="booklist.jsp">베스트셀러</a></li>
 						<li><a href="newlist.jsp">신간도서</a></li>
 						<li><a href="steadylist.jsp">스테디셀러</a>
-						<li><a href="#our-team">자유게시판</a></li>
+						<li><a href="list.jsp">자유게시판</a></li>
 					</ul>
 					<!-- /.main-menu -->
 				</div>
@@ -365,6 +365,14 @@ if (fCount > 0) {
 				</tbody>
 			</table>
 			<%-- 검색어 입력 form / get방식 / option value는 데이터베이스 칼럼과 동일하게 설정 --%>
+			<form method="get" action="list.jsp">
+			<select name="sel">
+				<option value="name">이름</option>
+				<option value="subject">제목</option>
+			</select>
+			<input type="text" name="find" id="find">
+			<input type="submit" value="검색">
+		</form>
 	</center>
 
 </body>
