@@ -21,8 +21,8 @@ public class ReviewCon extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		memberDTO dto = (memberDTO)session.getAttribute("dto");
-		TBookDTO book = (TBookDTO)request.getAttribute("book");
-		
+		TBookDTO book = (TBookDTO)request.getAttribute("book"); // 책제목 불러오는 방법1
+		// String book_title = request.getParameter("book_title"); // 책제목 불러오는 방법2 (ajax)
 		String book_title = book.getBookTitle();
 		String mb_id = dto.getMbId(); 
 		String review_content = request.getParameter("review_content");
