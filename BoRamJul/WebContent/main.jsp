@@ -444,11 +444,15 @@
 			</h2>
 			<hr>
 			<form action="JoinCon" method="post">
-				<input class="mainInfojoin" type="text" name="mb_id" placeholder="ID를 입력해주세요">
-					<button onclick="">중복확인</button>
-					<input class="mainInfojoin" type="password" name="mb_pw" placeholder="비밀번호를 입력해주세요"> <br> 
-					<input class="mainInfojoin" type="text" name="mb_nick" placeholder="사용하실 닉네임을 입력해주세요">
-					<button onclick="">중복확인</button>
+				<input class="mainInfojoin" type="text" id="join_id" name="mb_id" placeholder="ID를 입력해주세요">
+					<button type="button" id="check" onclick="idCheck()">중복확인</button>
+					<p id="result"></p>
+					<input class="mainInfojoin" type="password" onchange="pwcheck()" id="pw1" name="mb_pw" placeholder="비밀번호를 입력해주세요"> <br> 
+					<input class="mainInfojoin" type="password" onchange="pwcheck()" id="pw2" name="mb_pw" placeholder="비밀번호를 다시 입력해주세요"> <br> 
+					
+					<input class="mainInfojoin" type="text" id="join_nick" name="mb_nick" placeholder="사용하실 닉네임을 입력해주세요">
+					<button type="button" id="check" onclick="nickCheck()">중복확인</button>
+					<p id="result1"></p>
 					<br> <label for="gen" style="margin-left: 35px;">성별<br>
 						<input name="mb_gender" type="radio" style="margin-left: 50px;" name="성별" value="M">남 
 						<input name="mb_gender" type="radio" name="성별" value="F">여
@@ -461,7 +465,8 @@
 						<input id="age" name="mb_age" type="radio" value="60">60대 이상
 				</label><br> <br>
 				<hr>
-				<input type="submit" class="joinsub" value="회원가입을 완료합니다"> <br>
+				<p id="pw_result"></p>
+				
 				<br>
 			</form>
 		</div>
@@ -534,5 +539,55 @@
 	<script src="js/bootstrap.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/main.js"></script>
+	<script>
+		function idCheck(){
+			$.ajax({
+				url:"CheckCon",
+				type:"get",
+				data:{
+					"mb_id":$('#join_id').val()
+				},
+				success:function(res){ 
+					 console.log(res)
+					 if(res=='true'){
+						 $('#result').html("중복된 아이디입니다.").css('color','red');
+					 }else{
+						 $('#result').html("사용가능한 아이디입니다.").css('color','green');
+					 }
+				},
+				error:function(){
+					alert("요청실패!")
+				}
+			});
+		}
+		function pwcheck(){
+			if($('#pw1').val()==$('#pw2').val()){
+				$('#pw_result').html('<input type="submit" class="joinsub" value="회원가입을 완료합니다"> ');
+			}else{
+				$('#pw_result').html("비밀번호가 일치하지 않습니다.").css('color','red');
+			}
+		}
+		function nickCheck(){
+			$.ajax({
+				url:"nickCheckCon",
+				type:"get",
+				data:{
+					"mb_nick":$('#join_nick').val()
+				},
+				success:function(res){ 
+					 console.log(res)
+					 if(res=='true'){
+						 $('#result1').html("중복된 닉네임입니다.").css('color','red');
+					 }else{
+						 $('#result1').html("사용가능한 닉네임입니다.").css('color','green');
+					 }
+				},
+				error:function(){
+					alert("요청실패!")
+				}
+			});
+		}
+		
+	</script>
 </body>
 </html>

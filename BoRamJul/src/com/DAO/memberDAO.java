@@ -12,12 +12,13 @@ import com.DTO.memberDTO;
 
 public class memberDAO {
 	
-	public int Join(String id, String pw, String nick, String gender, String age) {
-		
-		Connection conn = null;
-		PreparedStatement psmt = null;
-		ResultSet rs = null;
-		int cnt = 0;
+	Connection conn = null;
+	PreparedStatement psmt = null;
+	ResultSet rs = null;
+	int cnt = 0;
+	private boolean check;
+	
+	public void getConn() {
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -28,6 +29,34 @@ public class memberDAO {
 
 			conn = DriverManager.getConnection(url, dbid, dbpw);
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void close() {
+
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (psmt != null) {
+				psmt.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int Join(String id, String pw, String nick, String gender, String age) {
+		
+		try {
+			getConn();
+			
 			if (conn != null) {
 			} else {
 			}
@@ -47,37 +76,18 @@ public class memberDAO {
 			e.printStackTrace();
 
 		} finally {
-			try {
-				if (psmt != null) {
-					psmt.close();
-				}
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			close();
 		}
 		
 		return cnt;
 	}
 	
 	public memberDTO Login(String mb_id, String mb_pw) {
-		
-		  Connection conn = null;
-	      PreparedStatement psmt = null;
-	      ResultSet rs = null;
 
 	      memberDTO dto = null;
 	      
 	      try {
-	         Class.forName("oracle.jdbc.driver.OracleDriver");
-
-	         String url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524";
-	         String dbid = "cgi_7_2_1216";
-	         String dbpw = "smhrd2";
-
-	         conn = DriverManager.getConnection(url, dbid, dbpw);
+	         getConn();
 	         
 	         String sql = "select * from T_member where mb_id = ?";
 
@@ -105,20 +115,56 @@ public class memberDAO {
 
 	      } finally {
 	         try {
-	            if (rs != null) {
-	               psmt.close();
-	            }
-	            if (psmt != null) {
-	               psmt.close();
-	            }
-	            if (conn != null) {
-	               conn.close();
-	            }
+	            close();
 	         } catch (Exception e) {
 	            e.printStackTrace();
 	         }
 	      }
 		return dto;
 	}
+	
+public boolean idCheck(String mb_id) {
+		
+		try {
+			getConn();
+			
+			String sql = "select * from t_member where mb_id = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_id);
+			
+			rs = psmt.executeQuery();		
+			
+			check = rs.next();
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			close();
+		}
+		return check;
+	}
+
+public boolean nickCheck(String mb_nick) {
+	
+	try {
+		getConn();
+		
+		String sql = "select * from t_member where mb_nick = ?";
+
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1, mb_nick);
+		
+		rs = psmt.executeQuery();		
+		
+		check = rs.next();
+	} catch (Exception e) {
+		e.printStackTrace();
+
+	} finally {
+		close();
+	}
+	return check;
+}
 
 }
