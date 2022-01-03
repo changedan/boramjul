@@ -269,8 +269,7 @@
             <hr>
             <!--도서평가-->
             <div class="my_comment">
-                <h2 style="text-align: center; margin-top: 10px; margin-bottom: 2px; font-size: 25px;">당신의
-                    평가</h2>
+                <h2 style="text-align: center; margin-top: 10px; margin-bottom: 2px; font-size: 25px;">당신의 평가</h2>
                 <h1 style="text-align: center; margin-top: 2px; margin-bottom: 10px; font-size: 20px;">
                     ★★★★★</h1>
                 <hr>

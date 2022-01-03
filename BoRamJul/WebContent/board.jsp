@@ -28,7 +28,7 @@
 <title>보람줄 - 북작북작</title>
 <style>
 	#board{
-		width: 70%;
+		width: 60%;
 		margin-left: auto;
 		margin-right: auto;
 		border-top: 2px solid black;
@@ -56,8 +56,18 @@
 	}
 	.write{
 		position: absolute;
-		right: 15%;
+		right: 20%;
 		padding: 8px;
+	}
+	.overlayinfo {
+		display: none;
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		background: rgba(0, 0, 0, 0.2);
 	}
 </style>
 </head>
@@ -74,7 +84,7 @@
 							<a href="#" onclick="openjoin()"style="font-size: 20px; font-weight: bold;">회원가입</a>
 							<%}else {%>
 							<a href ="LogoutCon" style="font-size: 20px; font-weight: bold;">로그아웃&nbsp;&nbsp;&nbsp;</a>
-							<a href="#" onclick="openinfo()"style="font-size: 20px; font-weight: bold;">회원정보[닉네임:<%=dto.getMbNick()%>]</a>
+							<a href="#" onclick="openinfo()" style="font-size: 20px; font-weight: bold;">회원정보[닉네임:<%=dto.getMbNick()%>]</a>
 							<%} %>  
 					</div>
 			</nav>
@@ -103,20 +113,16 @@
 		<table table id="board" border="0" class="table table-hover">
 			<thead>
 				<tr>
-					<th>번호</th>
-					<th style="width: 80px;">미리보기</th>
-					<th style="width: 420px;">제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>조회수</th>
+					<th style="width: 100px;">번호</th>
+					<th style="width: 500px;">제목</th>
+					<th style="width: 200px;">작성자</th>
+					<th style="width: 100px;">작성일</th>
+					<th style="width: 100px;">조회수</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<th>1</th>
-					<th>
-						<img src="" style="width: 60px; height: 60px; border-radius: 10%;">
-					</th>
 					<th><a href="">프로젝트 하다가 선생이랑 싸운 썰 푼다</a></th>
 					<th>Mr.P</th>
 					<th>2022.01.02</th>
@@ -177,13 +183,31 @@
 				BZBZ<br>로그인
 			</h2>
 			<hr>
-					<form action="LoginCon" method="post"> 
-						<input id="loginId" class="mainInfologin" type="text" name="mb_id" placeholder="ID를 입력해주세요"> 
-						<input id="loginPw" class="mainInfologin" type="password" name="mb_pw" placeholder="비밀번호를 입력해주세요">
+			<form action="LoginCon" method="post"> 
+				<input id="loginId" class="mainInfologin" type="text" name="mb_id" placeholder="ID를 입력해주세요"> 
+				<input id="loginPw" class="mainInfologin" type="password" name="mb_pw" placeholder="비밀번호를 입력해주세요">
 				<br>
 				<hr>
 				<input type="submit" class="loginsub" value="로그인"> <br>
 				<br>
+			</form>
+		</div>
+	</div>
+	<div id="overinfo" class="overlayinfo" style="z-index: 2000;">
+		<div class="joinOver">
+			<span class="closebtn" onclick="closeinfo()" title="close">X</span>
+			<h2 style="text-align: center;">
+				BZBZ<br>회원정보
+			</h2>
+			<hr>
+			<form>
+		 		<ul style="list-style: none;">
+		 			<li>회원 ID : </li>
+		 			<li>Nickname :</li>
+		 			<li>성별 </li>
+				</ul>
+				<hr>
+				<hr>
 			</form>
 		</div>
 	</div>
@@ -194,8 +218,8 @@
 		function openlogin() {
 			document.getElementById("overlogin").style.display = "block";
 		}
-		function openupdate() {
-			document.getElementById("overUpdate").style.display = "block";
+		function openinfo() {
+			document.getElementById("overinfo").style.display = "block";
 		}
 		function closejoin() {
 			document.getElementById("overjoin").style.display = "none";
@@ -203,8 +227,8 @@
 		function closelogin() {
 			document.getElementById("overlogin").style.display = "none";
 		}
-		function closeupdate() {
-			document.getElementById("overUpdate").style.display = "none";
+		function closeinfo() {
+			document.getElementById("overinfo").style.display = "none";
 		}
 	</script>
 </body>

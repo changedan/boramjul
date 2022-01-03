@@ -11,7 +11,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	memberDTO dto = (memberDTO)session.getAttribute("dto"); 
+	memberDTO dto = (memberDTO) session.getAttribute("dto");
 %>
 
 <!DOCTYPE html>
@@ -26,6 +26,18 @@
 <link rel="stylesheet" href="style.css">
 <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 <title>보람줄 - 북작북작</title>
+<style>
+.overlayinfo {
+	display: none;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.2);
+}
+</style>
 </head>
 <body class="site-main" id="sTop">
 	<div class="site-header">
@@ -34,15 +46,25 @@
 				<div id="nav_title">
 					<a href="main.jsp">북작북작</a>
 				</div>
-					<div id="nav_login">
-							<%if (dto == null){%>
-							<a href="#" onclick="openlogin()" style="font-size: 20px; font-weight: bold;">로그인&nbsp;&nbsp;&nbsp;</a>
-							<a href="#" onclick="openjoin()"style="font-size: 20px; font-weight: bold;">회원가입</a>
-							<%}else {%>
-							<a href ="LogoutCon" style="font-size: 20px; font-weight: bold;">로그아웃&nbsp;&nbsp;&nbsp;</a>
-							<a href="#" onclick="openinfo()"style="font-size: 20px; font-weight: bold;">회원정보[닉네임:<%=dto.getMbNick()%>]</a>
-							<%} %>  
-					</div>
+				<div id="nav_login">
+					<%
+						if (dto == null) {
+					%>
+					<a href="#" onclick="openlogin()"
+						style="font-size: 20px; font-weight: bold;">로그인&nbsp;&nbsp;&nbsp;</a>
+					<a href="#" onclick="openjoin()"
+						style="font-size: 20px; font-weight: bold;">회원가입</a>
+					<%
+						} else {
+					%>
+					<a href="LogoutCon" style="font-size: 20px; font-weight: bold;">로그아웃&nbsp;&nbsp;&nbsp;</a>
+					<a href="#" onclick="openinfo()"
+						style="font-size: 20px; font-weight: bold;">회원정보[닉네임:<%=dto.getMbNick()%>]
+					</a>
+					<%
+						}
+					%>
+				</div>
 			</nav>
 		</div>
 		<div class="main-header">
@@ -76,14 +98,14 @@
 					<%
 						for (int i = 0; i < 8; i++) {
 					%>
-					<li class="slider-list">
-						<a href="BookInfo?no=<%=arr.get(i).getBookSeq()%>">
-						<div class="overlay"></div> <img src="<%=arr.get(i).getBookCover()%>" alt="">
-						<div class="slider-title"><%=arr.get(i).getBookTitle() %></div>
-						<div class="slider-berief"><%=arr.get(i).getBookBrief() %></div>
-						<div class="slider-caption visible-md visible-lg"></div>
-						</a>
-					</li>
+					<li class="slider-list"><a
+						href="BookInfo?no=<%=arr.get(i).getBookSeq()%>">
+							<div class="overlay"></div> <img
+							src="<%=arr.get(i).getBookCover()%>" alt="">
+							<div class="slider-title"><%=arr.get(i).getBookTitle()%></div>
+							<div class="slider-berief"><%=arr.get(i).getBookBrief()%></div>
+							<div class="slider-caption visible-md visible-lg"></div>
+					</a></li>
 					<%
 						}
 					%>
@@ -105,9 +127,7 @@
 			<div class="row">
 				<div class="heading-section col-md-12 text-center">
 					<h2>
-						<span class="best">
-							베스트셀러
-						</span>
+						<span class="best"> 베스트셀러 </span>
 					</h2>
 				</div>
 				<!-- /.heading-section -->
@@ -154,9 +174,7 @@
 			<div class="row">
 				<div class="heading-section col-md-12 text-center">
 					<h2>
-						<span class="new">
-							신간도서
-						</span>
+						<span class="new"> 신간도서 </span>
 					</h2>
 				</div>
 				<!-- /.heading-section -->
@@ -291,15 +309,13 @@
 		<!-- /.container -->
 	</div>
 	<!-- /#portfolio -->
-	
+
 	<div class="content-section" id="Steadyseller">
 		<div class="container">
 			<div class="row">
 				<div class="heading-section col-md-12 text-center">
 					<h2>
-						<span class="steady">
-							스테디셀러
-						</span>
+						<span class="steady"> 스테디셀러 </span>
 					</h2>
 				</div>
 				<!-- /.heading-section -->
@@ -444,29 +460,36 @@
 			</h2>
 			<hr>
 			<form action="JoinCon" method="post">
-				<input class="mainInfojoin" type="text" id="join_id" name="mb_id" placeholder="ID를 입력해주세요">
-					<button type="button" id="check" onclick="idCheck()">중복확인</button>
-					<p id="result"></p>
-					<input class="mainInfojoin" type="password" onchange="pwcheck()" id="pw1" name="mb_pw" placeholder="비밀번호를 입력해주세요"> <br> 
-					<input class="mainInfojoin" type="password" onchange="pwcheck()" id="pw2" name="mb_pw" placeholder="비밀번호를 다시 입력해주세요"> <br> 
-					
-					<input class="mainInfojoin" type="text" id="join_nick" name="mb_nick" placeholder="사용하실 닉네임을 입력해주세요">
-					<button type="button" id="check" onclick="nickCheck()">중복확인</button>
-					<p id="result1"></p>
-					<br> <label for="gen" style="margin-left: 35px;">성별<br>
-						<input name="mb_gender" type="radio" style="margin-left: 50px;" name="성별" value="M">남 
-						<input name="mb_gender" type="radio" name="성별" value="F">여
-					</label><br> <br> <label for="age" style="margin-left: 35px;">연령<br>
-						<input id="age" name="mb_age" type="radio" style="margin-left: 50px;" value="10">10대
-						<input id="age" name="mb_age" type="radio" value="20">20대 
-						<input id="age" name="mb_age" type="radio" value="30">30대<br> 
-						<input id="age" name="mb_age" type="radio" style="margin-left: 50px;" value="40">40대 
-						<input id="age" name="mb_age" type="radio" value="50">50대 
-						<input id="age" name="mb_age" type="radio" value="60">60대 이상
+				<input class="mainInfojoin" type="text" id="join_id" name="mb_id"
+					placeholder="ID를 입력해주세요">
+				<button type="button" id="check" onclick="idCheck()">중복확인</button>
+				<p id="result"></p>
+				<input class="mainInfojoin" type="password" onchange="pwcheck()"
+					id="pw1" name="mb_pw" placeholder="비밀번호를 입력해주세요"> <br>
+				<input class="mainInfojoin" type="password" onchange="pwcheck()"
+					id="pw2" name="mb_pw" placeholder="비밀번호를 다시 입력해주세요"> <br>
+
+				<input class="mainInfojoin" type="text" id="join_nick"
+					name="mb_nick" placeholder="사용하실 닉네임을 입력해주세요">
+				<button type="button" id="check" onclick="nickCheck()">중복확인</button>
+				<p id="result1"></p>
+				<br> <label for="gen" style="margin-left: 35px;">성별<br>
+					<input name="mb_gender" type="radio" style="margin-left: 50px;"
+					name="성별" value="M">남 <input name="mb_gender" type="radio"
+					name="성별" value="F">여
+				</label><br> <br> <label for="age" style="margin-left: 35px;">연령<br>
+					<input id="age" name="mb_age" type="radio"
+					style="margin-left: 50px;" value="10">10대 <input id="age"
+					name="mb_age" type="radio" value="20">20대 <input id="age"
+					name="mb_age" type="radio" value="30">30대<br> <input
+					id="age" name="mb_age" type="radio" style="margin-left: 50px;"
+					value="40">40대 <input id="age" name="mb_age" type="radio"
+					value="50">50대 <input id="age" name="mb_age" type="radio"
+					value="60">60대 이상
 				</label><br> <br>
 				<hr>
 				<p id="pw_result"></p>
-				
+
 				<br>
 			</form>
 		</div>
@@ -478,18 +501,52 @@
 				BZBZ<br>로그인
 			</h2>
 			<hr>
-					<form action="LoginCon" method="post"> 
-						<input id="loginId" class="mainInfologin" type="text" name="mb_id" placeholder="ID를 입력해주세요"> 
-						<input id="loginPw" class="mainInfologin" type="password" name="mb_pw" placeholder="비밀번호를 입력해주세요">
-				<br>
+			<form action="LoginCon" method="post">
+				<input id="loginId" class="mainInfologin" type="text" name="mb_id"
+					placeholder="ID를 입력해주세요"> <input id="loginPw"
+					class="mainInfologin" type="password" name="mb_pw"
+					placeholder="비밀번호를 입력해주세요"> <br>
 				<hr>
 				<input type="submit" class="loginsub" value="로그인"> <br>
 				<br>
 			</form>
 		</div>
 	</div>
-
-	
+	<div id="overinfo" class="overlayinfo" style="z-index: 2000;">
+		<div class="joinOver">
+			<span class="closebtn" onclick="closeinfo()" title="close">X</span>
+			<h2 style="text-align: center;">
+				BZBZ<br>회원정보
+			</h2>
+			<hr>
+			<form>
+				<ul style="list-style: none;">
+					<li>회원 ID :</li>
+					<li>Nickname :</li>
+					<li>성별</li>
+				</ul>
+				<hr>
+				<hr>
+			</form>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>보람줄 &copy; 2021 북작북작</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">맨 위로</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
 	<script>
 		function openjoin() {
 			document.getElementById("overjoin").style.display = "block";
@@ -500,6 +557,9 @@
 		function openupdate() {
 			document.getElementById("overUpdate").style.display = "block";
 		}
+		function openinfo() {
+			document.getElementById("overinfo").style.display = "block";
+		}
 		function closejoin() {
 			document.getElementById("overjoin").style.display = "none";
 		}
@@ -508,6 +568,9 @@
 		}
 		function closeupdate() {
 			document.getElementById("overUpdate").style.display = "none";
+		}
+		function closeinfo() {
+			document.getElementById("overinfo").style.display = "none";
 		}
 	</script>
 
@@ -518,18 +581,7 @@
 
 		});
 	</script>
-	<div id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-xs-12 text-left">
-                        <span>보람줄 &copy; 2021 북작북작</span>
-                  </div> <!-- /.text-center -->
-                    <div class="col-md-4 hidden-xs text-right">
-                        <a href="#top" id="go-top">맨 위로</a>
-                    </div> <!-- /.text-center -->
-                </div> <!-- /.row -->
-            </div> <!-- /.container -->
-        </div> <!-- /#footer -->
+
 	<script src="js/vendor/jquery-1.11.0.min.js"></script>
 	<script>
 		window.jQuery
@@ -540,54 +592,57 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/main.js"></script>
 	<script>
-		function idCheck(){
+		function idCheck() {
 			$.ajax({
-				url:"CheckCon",
-				type:"get",
-				data:{
-					"mb_id":$('#join_id').val()
+				url : "CheckCon",
+				type : "get",
+				data : {
+					"mb_id" : $('#join_id').val()
 				},
-				success:function(res){ 
-					 console.log(res)
-					 if(res=='true'){
-						 $('#result').html("중복된 아이디입니다.").css('color','red');
-					 }else{
-						 $('#result').html("사용가능한 아이디입니다.").css('color','green');
-					 }
+				success : function(res) {
+					console.log(res)
+					if (res == 'true') {
+						$('#result').html("중복된 아이디입니다.").css('color', 'red');
+					} else {
+						$('#result').html("사용가능한 아이디입니다.")
+								.css('color', 'green');
+					}
 				},
-				error:function(){
+				error : function() {
 					alert("요청실패!")
 				}
 			});
 		}
-		function pwcheck(){
-			if($('#pw1').val()==$('#pw2').val()){
-				$('#pw_result').html('<input type="submit" class="joinsub" value="회원가입을 완료합니다"> ');
-			}else{
-				$('#pw_result').html("비밀번호가 일치하지 않습니다.").css('color','red');
+		function pwcheck() {
+			if ($('#pw1').val() == $('#pw2').val()) {
+				$('#pw_result')
+						.html(
+								'<input type="submit" class="joinsub" value="회원가입을 완료합니다"> ');
+			} else {
+				$('#pw_result').html("비밀번호가 일치하지 않습니다.").css('color', 'red');
 			}
 		}
-		function nickCheck(){
+		function nickCheck() {
 			$.ajax({
-				url:"nickCheckCon",
-				type:"get",
-				data:{
-					"mb_nick":$('#join_nick').val()
+				url : "nickCheckCon",
+				type : "get",
+				data : {
+					"mb_nick" : $('#join_nick').val()
 				},
-				success:function(res){ 
-					 console.log(res)
-					 if(res=='true'){
-						 $('#result1').html("중복된 닉네임입니다.").css('color','red');
-					 }else{
-						 $('#result1').html("사용가능한 닉네임입니다.").css('color','green');
-					 }
+				success : function(res) {
+					console.log(res)
+					if (res == 'true') {
+						$('#result1').html("중복된 닉네임입니다.").css('color', 'red');
+					} else {
+						$('#result1').html("사용가능한 닉네임입니다.").css('color',
+								'green');
+					}
 				},
-				error:function(){
+				error : function() {
 					alert("요청실패!")
 				}
 			});
 		}
-		
 	</script>
 </body>
 </html>
