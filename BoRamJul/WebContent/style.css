@@ -89,7 +89,10 @@ a:hover {
 	text-decoration: none;
 	color: rgba(25, 25, 25, 0.4);
 }
-
+div.row{
+	display : flex;
+	flex-wrap: wrap;
+}
 .blue {
 	color: #06C;
 }
