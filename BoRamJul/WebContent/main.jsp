@@ -117,7 +117,7 @@
                 <ul class="slides">
                     <%
 						TBookDAO dao = new TBookDAO();
-					ArrayList<TBookDTO> arr = dao.selectBookAll();
+						ArrayList<TBookDTO> arr = dao.selectBookAll();
 					%>
                     <%
 						for (int i = 0; i < 8; i++) {

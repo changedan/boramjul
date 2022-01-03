@@ -107,7 +107,7 @@ public class TBookDAO {
 		try {
 			getConn();
 
-			String sql = "select book_seq, book_title, book_brief, book_cover from t_book";
+			String sql = "SELECT a.book_seq, a.book_title, a.book_brief, a.book_cover FROM T_BOOK a, T_best b WHERE a.book_title = b.book_title order by b.book_rank";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -138,7 +138,7 @@ public class TBookDAO {
 		try {
 			getConn();
 
-			String sql = "select book_seq, book_title, book_author, book_cover, book_publisher from t_book";
+			String sql = "SELECT a.book_seq, a.book_title, a.book_author, a.book_cover, a.book_publisher FROM T_BOOK a, T_best b WHERE a.book_title = b.book_title order by b.book_rank";
 
 			psmt = conn.prepareStatement(sql);
 

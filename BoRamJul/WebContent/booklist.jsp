@@ -110,7 +110,7 @@
 	<div class="book_main">
 		<h1 style="text-align: center; margin: 30px;">베스트셀러</h1>
 		<%
-			for(int i = 0; i < 8; i++) {
+			for(int i = 0; i < best.size(); i++) {
 		%>
 		<%if ( i % 2 == 0) { %>
 		<div class="rank_tab" style="background-color: rgb(248, 246, 234)">
