@@ -35,8 +35,6 @@
 	height: 200px;
 	margin: 2px;
 	padding: 0px;
-	border-top: 1px dotted black;
-	border-bottom: 1px dotted black;
 	display: flex;
 }
 
@@ -75,7 +73,7 @@
 					%>
 					<a href="main.jsp" onclick="openlogin()"
 						style="font-size: 20px; font-weight: bold;">로그인&nbsp;&nbsp;&nbsp;</a>
-					<a href="#" onclick="openjoin()"
+					<a href="main.jsp" onclick="openjoin()"
 						style="font-size: 20px; font-weight: bold;">회원가입</a>
 					<%
 						} else {
