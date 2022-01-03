@@ -6,28 +6,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
+import com.DAO.ReviewDAO;
+import com.DTO.memberDTO;
+import com.vo.TBookDTO;
 
 @WebServlet("/ReviewCon")
 public class ReviewCon extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("utf-8");
-
+		HttpSession session = request.getSession();
+		memberDTO dto = (memberDTO)session.getAttribute("dto");
+		TBookDTO book = (TBookDTO)request.getAttribute("book");
+		
+		String mb_id = dto.getMbId(); 
+		String book_title = book.getBookTitle();
 		String review_content = request.getParameter("review_content");
-		String star_point = request.getParameter("starpoint");
+		Double star_point = Double.parseDouble(request.getParameter("starpoint"));
 		String tag1 = request.getParameter("tag1");
 		String tag2 = request.getParameter("tag2");
 		String tag3 = request.getParameter("tag3");
 		
 		
-		
-		
-		System.out.println(review_content); // 잘받음
-		System.out.println(star_point); // 별의 value값을 받아야되는데 on이라고 받음
-		System.out.println(tag1); // 태그를 여러개 받아야하는데 한개만 받음
-		System.out.println(tag2); // 태그를 여러개 받아야하는데 한개만 받음
-		System.out.println(tag3); // 태그를 여러개 받아야하는데 한개만 받음
-	
+		System.out.println(book_title);
+		System.out.println(mb_id);
+		System.out.println(review_content);
+		System.out.println(star_point);
+		System.out.println(tag1);
+		System.out.println(tag2);
+		System.out.println(tag3);
 	
 	}
 

@@ -11,7 +11,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	memberDTO dto = (memberDTO) session.getAttribute("dto");
+	memberDTO dto = (memberDTO)session.getAttribute("dto");
 %>
 
 <!DOCTYPE html>

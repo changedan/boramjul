@@ -6,7 +6,7 @@
 <%@page import="java.sql.Connection"%>
 
 <%
-	TBookDTO book = (TBookDTO) request.getAttribute("book");
+	TBookDTO book = (TBookDTO)request.getAttribute("book");
 	memberDTO dto = (memberDTO)session.getAttribute("dto"); 
 %>
 <!DOCTYPE html>
@@ -308,7 +308,7 @@
             <!--리뷰창 오버레이-->
             <div id="review_over" style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); display: none; width: 800px; max-height: 700px; background-color: white; border: 2px solid black;">
                 <span class="closebtn" onclick="close_review()" title="닫기" style="position: relative; top: 20px; left: 750px; font-size: 30px; cursor: pointer;">X</span>
-                <h2 style="text-align: center; margin-bottom: 0px; font-size: 35px; font-weight: bold;"><%=book.getBookTitle() %></h2>
+                <h2 style="text-align: center; margin-bottom: 0px; font-size: 35px; font-weight: bold;"><%=book.getBookTitle()%></h2>
                 <h5 style="text-align: center; margin-top: 0px; font-size: 15px;"><%=book.getBookAuthor()%></h5>
                 <form action="ReviewCon" method="post" style="text-align: center;">
                     <hr>
@@ -451,6 +451,7 @@
             });
         });
     </script>
+ 
 </body>
 
 </html>
