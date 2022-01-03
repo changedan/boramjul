@@ -140,5 +140,72 @@
 				</ul>
 			</div>
 	</div>
+	<div id="overjoin" class="overlayjoin" style="z-index: 2000;">
+		<div class="joinOver">
+			<span class="closebtn" onclick="closejoin()" title="close">X</span>
+			<h2 style="text-align: center;">
+				BZBZ<br>회원가입
+			</h2>
+			<hr>
+			<form action="JoinCon" method="post">
+				<input class="mainInfojoin" type="text" name="mb_id" placeholder="ID를 입력해주세요">
+					<button onclick="">중복확인</button>
+					<input class="mainInfojoin" type="password" name="mb_pw" placeholder="비밀번호를 입력해주세요"> <br> 
+					<input class="mainInfojoin" type="text" name="mb_nick" placeholder="사용하실 닉네임을 입력해주세요">
+					<button onclick="">중복확인</button>
+					<br> <label for="gen" style="margin-left: 35px;">성별<br>
+						<input name="mb_gender" type="radio" style="margin-left: 50px;" name="성별" value="M">남 
+						<input name="mb_gender" type="radio" name="성별" value="F">여
+					</label><br> <br> <label for="age" style="margin-left: 35px;">연령<br>
+						<input id="age" name="mb_age" type="radio" style="margin-left: 50px;" value="10">10대
+						<input id="age" name="mb_age" type="radio" value="20">20대 
+						<input id="age" name="mb_age" type="radio" value="30">30대<br> 
+						<input id="age" name="mb_age" type="radio" style="margin-left: 50px;" value="40">40대 
+						<input id="age" name="mb_age" type="radio" value="50">50대 
+						<input id="age" name="mb_age" type="radio" value="60">60대 이상
+				</label><br> <br>
+				<hr>
+				<input type="submit" class="joinsub" value="회원가입을 완료합니다"> <br>
+				<br>
+			</form>
+		</div>
+	</div>
+	<div id="overlogin" class="overlaylogin" style="z-index: 2000;">
+		<div class="joinOver">
+			<span class="closebtn" onclick="closelogin()" title="close">X</span>
+			<h2 style="text-align: center;">
+				BZBZ<br>로그인
+			</h2>
+			<hr>
+					<form action="LoginCon" method="post"> 
+						<input id="loginId" class="mainInfologin" type="text" name="mb_id" placeholder="ID를 입력해주세요"> 
+						<input id="loginPw" class="mainInfologin" type="password" name="mb_pw" placeholder="비밀번호를 입력해주세요">
+				<br>
+				<hr>
+				<input type="submit" class="loginsub" value="로그인"> <br>
+				<br>
+			</form>
+		</div>
+	</div>
+	<script>
+		function openjoin() {
+			document.getElementById("overjoin").style.display = "block";
+		}
+		function openlogin() {
+			document.getElementById("overlogin").style.display = "block";
+		}
+		function openupdate() {
+			document.getElementById("overUpdate").style.display = "block";
+		}
+		function closejoin() {
+			document.getElementById("overjoin").style.display = "none";
+		}
+		function closelogin() {
+			document.getElementById("overlogin").style.display = "none";
+		}
+		function closeupdate() {
+			document.getElementById("overUpdate").style.display = "none";
+		}
+	</script>
 </body>
 </html>
