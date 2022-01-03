@@ -1,0 +1,12 @@
+<Context> 
+  <Resource name="jdbc/orcl" 
+   auth="Container"
+   type="javax.sql.DataSource" 
+   username="cgi_7_2_1216" 
+   password="smhrd2"
+   driverClassName="oracle.jdbc.driver.OracleDriver"
+   factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+   url="jdbc:oracle:thin:@project-db-stu.ddns.net:1524"
+   maxActive="50" 
+   maxIdle="30"/>  
+</Context>
