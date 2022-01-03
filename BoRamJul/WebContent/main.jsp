@@ -98,7 +98,7 @@
                         <li><a href="booklist.jsp">베스트셀러</a></li>
                         <li><a href="newlist.jsp">신간도서</a></li>
                         <li><a href="steadylist.jsp">스테디셀러</a>
-                        <li><a href="board.jsp">자유게시판</a></li>
+                        <li><a href="list.jsp">자유게시판</a></li>
                     </ul>
                     <!-- /.main-menu -->
                 </div>

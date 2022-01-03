@@ -145,15 +145,15 @@ if (fCount > 0) {
 				<%
 					if (dto == null) {
 				%>
-				<a href="main.jsp" onclick=""
+				<a href="#" onclick="openlogin()"
 					style="font-size: 20px; font-weight: bold;">로그인&nbsp;&nbsp;&nbsp;</a>
-				<a href="main.jsp" onclick=""
+				<a href="#" onclick="openjoin()"
 					style="font-size: 20px; font-weight: bold;">회원가입</a>
 				<%
 					} else {
 				%>
 				<a href="LogoutCon" style="font-size: 20px; font-weight: bold;">로그아웃&nbsp;&nbsp;&nbsp;</a>
-				<a href="#" onclick=""
+				<a href="#" onclick="openinfo()"
 					style="font-size: 20px; font-weight: bold;">회원정보[닉네임:<%=dto.getMbNick()%>]
 				</a>
 				<%
@@ -183,7 +183,7 @@ if (fCount > 0) {
 	<hr class="hr_main">
 	<center>
 		<h1 style="text-align: center;">자유게시판</h1>
-		(총 게시글 수 :<%=count%>/ 검색 데이터 수 :<%=fCount%>)
+		(총 레코드 수 :<%=count%>/ 검색 데이터 수 :<%=fCount%>)
 		<div>
 			<table table id="board" border="0" class="table table-hover">
 				<thead>
@@ -223,6 +223,7 @@ if (fCount > 0) {
 				</td>
 				<td><%=df.format(board.getReg_date())%></td>
 				<td><%=board.getReadCount()%></td>
+				<td><%=board.getIp()%></td>
 			</tr>
 			<%
 					}
@@ -273,11 +274,8 @@ if (fCount > 0) {
 			<tr>
 				<td colspan="6" align="right">
 					<%-- 버튼을 클릭하면 writeForm.jsp로 이동 --%>
-					<%if(dto==null) {%>
-					<%}else if(dto!=null){ %>
 					<input type="button" value="글작성"
 					onclick="location.href='writeForm.jsp'">
-					<%} %>
 				</td>
 			</tr>
 			<tr>
@@ -365,6 +363,108 @@ if (fCount > 0) {
 				</tbody>
 			</table>
 			<%-- 검색어 입력 form / get방식 / option value는 데이터베이스 칼럼과 동일하게 설정 --%>
+		<form method="get" action="list.jsp">
+			<select name="sel">
+				<option value="name">이름</option>
+				<option value="subject">제목</option>
+			</select>
+			<input type="text" name="find" id="find">
+			<input type="submit" value="검색">
+		</form>		
+		</div>
+		
+		<div id="overjoin" class="overlayjoin" style="z-index: 2000;">
+			<div class="joinOver">
+				<span class="closebtn" onclick="closejoin()" title="close">X</span>
+				<h2 style="text-align: center;">
+					BZBZ<br>회원가입
+				</h2>
+				<hr>
+				<form action="JoinCon" method="post">
+					<input class="mainInfojoin" type="text" name="mb_id"
+						placeholder="ID를 입력해주세요">
+					<button onclick="">중복확인</button>
+					<input class="mainInfojoin" type="password" name="mb_pw"
+						placeholder="비밀번호를 입력해주세요"> <br> <input
+						class="mainInfojoin" type="text" name="mb_nick"
+						placeholder="사용하실 닉네임을 입력해주세요">
+					<button onclick="">중복확인</button>
+					<br> <label for="gen" style="margin-left: 35px;">성별<br>
+						<input name="mb_gender" type="radio" style="margin-left: 50px;"
+						name="성별" value="M">남 <input name="mb_gender" type="radio"
+						name="성별" value="F">여
+					</label><br> <br> <label for="age" style="margin-left: 35px;">연령<br>
+						<input id="age" name="mb_age" type="radio"
+						style="margin-left: 50px;" value="10">10대 <input id="age"
+						name="mb_age" type="radio" value="20">20대 <input id="age"
+						name="mb_age" type="radio" value="30">30대<br> <input
+						id="age" name="mb_age" type="radio" style="margin-left: 50px;"
+						value="40">40대 <input id="age" name="mb_age" type="radio"
+						value="50">50대 <input id="age" name="mb_age" type="radio"
+						value="60">60대 이상
+					</label><br> <br>
+					<hr>
+					<input type="submit" class="joinsub" value="회원가입을 완료합니다"> <br>
+					<br>
+				</form>
+			</div>
+		</div>
+		<div id="overlogin" class="overlaylogin" style="z-index: 2000;">
+			<div class="joinOver">
+				<span class="closebtn" onclick="closelogin()" title="close">X</span>
+				<h2 style="text-align: center;">
+					BZBZ<br>로그인
+				</h2>
+				<hr>
+				<form action="LoginCon" method="post">
+					<input id="loginId" class="mainInfologin" type="text" name="mb_id"
+						placeholder="ID를 입력해주세요"> <input id="loginPw"
+						class="mainInfologin" type="password" name="mb_pw"
+						placeholder="비밀번호를 입력해주세요"> <br>
+					<hr>
+					<input type="submit" class="loginsub" value="로그인"> <br>
+					<br>
+				</form>
+			</div>
+		</div>
+		<div id="overinfo" class="overlayinfo" style="z-index: 2000;">
+			<div class="joinOver">
+				<span class="closebtn" onclick="closeinfo()" title="close">X</span>
+				<h2 style="text-align: center;">
+					BZBZ<br>회원정보
+				</h2>
+				<hr>
+				<form>
+					<ul style="list-style: none;">
+						<li>회원 ID :</li>
+						<li>Nickname :</li>
+						<li>성별</li>
+					</ul>
+					<hr>
+					<hr>
+				</form>
+			</div>
+		</div>
+		<script>
+			function openjoin() {
+				document.getElementById("overjoin").style.display = "block";
+			}
+			function openlogin() {
+				document.getElementById("overlogin").style.display = "block";
+			}
+			function openinfo() {
+				document.getElementById("overinfo").style.display = "block";
+			}
+			function closejoin() {
+				document.getElementById("overjoin").style.display = "none";
+			}
+			function closelogin() {
+				document.getElementById("overlogin").style.display = "none";
+			}
+			function closeinfo() {
+				document.getElementById("overinfo").style.display = "none";
+			}
+		</script>
 	</center>
 
 </body>
