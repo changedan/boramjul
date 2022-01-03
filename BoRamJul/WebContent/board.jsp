@@ -123,7 +123,7 @@
 			<tbody>
 				<tr>
 					<th>1</th>
-					<th><a href="">프로젝트 하다가 선생이랑 싸운 썰 푼다</a></th>
+					<th><a href="board_read.jsp">프로젝트 하다가 선생이랑 싸운 썰 푼다</a></th>
 					<th>Mr.P</th>
 					<th>2022.01.02</th>
 					<th>37</th>
