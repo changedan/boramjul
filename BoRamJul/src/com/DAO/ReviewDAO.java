@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpSession;
+
+import com.DTO.memberDTO;
 import com.vo.TBookDTO;
 
 public class ReviewDAO {
@@ -13,6 +17,7 @@ public class ReviewDAO {
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
 	int cnt = 0;
+	
 
 	public void getConn() {
 
@@ -48,7 +53,7 @@ public class ReviewDAO {
 		}
 	}
 	
-	public ReviewDAO(String mb_id, String review_content, float star_point1, String tag1, String tag2, String tag3) {
+	public ReviewDAO(String book_title, String mb_id, String review_content, double star_point, String tag1, String tag2, String tag3) {
 				
 			try {
 				getConn();
@@ -70,7 +75,13 @@ public class ReviewDAO {
 	
 				cnt = psmt.executeUpdate();
 				
-				// 쿼리문에 넣을 변수지정
+				psmt.setString(1,book_title);
+				psmt.setString(2,mb_id);
+				psmt.setString(3,review_content);
+				psmt.setDouble(4,star_point);
+				psmt.setString(5,tag1);
+				psmt.setString(6,tag2);
+				psmt.setString(7,tag3);
 	
 			} catch (Exception e) {
 				e.printStackTrace();

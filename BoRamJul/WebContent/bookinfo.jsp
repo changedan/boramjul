@@ -349,7 +349,7 @@
                         </div>
                     </div>
                     <hr>
-                    <input type="submit" value="작성완료" style="display: inline-block; position: relative; top: 20px; color: white; margin-bottom: 50px;font-weight: bold; background-color: rgb(78, 221, 78);">
+                    <input type="submit" onclick="book_title()" value="작성완료" style="display: inline-block; position: relative; top: 20px; color: white; margin-bottom: 50px;font-weight: bold; background-color: rgb(78, 221, 78);">
                 </form>
             </div>
         </div>
@@ -451,6 +451,26 @@
             });
         });
     </script>
+    <script>
+
+		var book_title = "<%=book.getBookTitle()%>"
+		
+		function book_title(){
+		
+		  $.ajax({
+		    url: "ReviewCon.java",
+		    data: "book_title=" + book_title,
+		    type: "POST",
+		    success : function(data){
+		      alert("성공")
+		    },
+		    error : function(){
+		      alert("에러")		
+		    }
+		  });
+		}
+			
+	</script>
  
 </body>
 

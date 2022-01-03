@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import com.DAO.ReviewDAO;
+import com.DAO.memberDAO;
 import com.DTO.memberDTO;
 import com.vo.TBookDTO;
 
@@ -22,14 +23,15 @@ public class ReviewCon extends HttpServlet {
 		memberDTO dto = (memberDTO)session.getAttribute("dto");
 		TBookDTO book = (TBookDTO)request.getAttribute("book");
 		
-		String mb_id = dto.getMbId(); 
 		String book_title = book.getBookTitle();
+		String mb_id = dto.getMbId(); 
 		String review_content = request.getParameter("review_content");
 		Double star_point = Double.parseDouble(request.getParameter("starpoint"));
 		String tag1 = request.getParameter("tag1");
 		String tag2 = request.getParameter("tag2");
 		String tag3 = request.getParameter("tag3");
 		
+		ReviewDAO dao = new ReviewDAO(book_title, mb_id, review_content, star_point, tag1, tag2, tag3);
 		
 		System.out.println(book_title);
 		System.out.println(mb_id);
