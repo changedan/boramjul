@@ -61,6 +61,31 @@
 					<a href="#" onclick="openinfo()"
 						style="font-size: 20px; font-weight: bold;">회원정보[닉네임:<%=dto.getMbNick()%>]
 					</a>
+						<div id="overinfo" class="overlayinfo" style="z-index: 2000;">
+							<div class="joinOver">
+								<span class="closebtn" onclick="closeinfo()" title="close">X</span>
+								<h2 style="text-align: center;">
+									BZBZ<br>회원정보
+								</h2>
+								<hr>
+								<form>
+									<ul style="list-style: none;">
+										<li>회원 ID : <%=dto.getMbId()%></li><br><br>
+										<li>닉네임 : <%=dto.getMbNick()%> </li><br><br>
+										<li>성별 : <%
+										String gender = "";
+										if(dto.getMbGender().equals("M")){
+											gender = "남";
+										}else{
+											gender = "여";
+										}%>
+										<%=gender%></li>
+									</ul>
+									<hr>
+									<hr>
+								</form>
+							</div>
+						</div>
 					<%
 						}
 					%>
@@ -509,24 +534,6 @@
 				<hr>
 				<input type="submit" class="loginsub" value="로그인"> <br>
 				<br>
-			</form>
-		</div>
-	</div>
-	<div id="overinfo" class="overlayinfo" style="z-index: 2000;">
-		<div class="joinOver">
-			<span class="closebtn" onclick="closeinfo()" title="close">X</span>
-			<h2 style="text-align: center;">
-				BZBZ<br>회원정보
-			</h2>
-			<hr>
-			<form>
-				<ul style="list-style: none;">
-					<li>회원 ID :</li>
-					<li>Nickname :</li>
-					<li>성별</li>
-				</ul>
-				<hr>
-				<hr>
 			</form>
 		</div>
 	</div>
