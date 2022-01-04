@@ -287,9 +287,9 @@
                 <div class="comment" style="display: inline-block; width: 350px; border-right: 1px solid gray; margin-top: 10px; margin-left: 38px; padding-right: 40px;">
                     <ul>
                         <li>
-                        <%=review.get(0).getMb_nick()%><br>
-                        <%=review.get(0).getReview_content()%><br>
-                        <%=review.get(0).getReview_date()%>
+                        닉네임 : <%=review.get(0).getMb_nick()%><br>
+			리뷰내용 : <%=review.get(0).getReview_content()%><br>
+                       작성일 <%=review.get(0).getReview_date()%>
                         </li>
                     </ul>
                 </div>
