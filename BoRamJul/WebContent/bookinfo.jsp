@@ -1,3 +1,6 @@
+<%@page import="com.DTO.ReviewDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.DAO.ReviewDAO"%>
 <%@page import="com.DTO.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,6 +11,8 @@
 <%
 	TBookDTO book = (TBookDTO)request.getAttribute("book");
 	memberDTO dto = (memberDTO)session.getAttribute("dto"); 
+	ReviewDAO dao = new ReviewDAO();
+	ArrayList<ReviewDTO> review = dao.selectReview();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -281,15 +286,10 @@
                 <hr>
                 <div class="comment" style="display: inline-block; width: 350px; border-right: 1px solid gray; margin-top: 10px; margin-left: 38px; padding-right: 40px;">
                     <ul>
-                        <li>★★★★★<br>평가를 남겨주세요
-                        </li>
-                        <li>★★★★★<br>평가를 남겨주세요
-                        </li>
-                        <li>★★★★★<br>평가를 남겨주세요
-                        </li>
-                        <li>★★★★★<br>평가를 남겨주세요
-                        </li>
-                        <li>★★★★★<br>평가를 남겨주세요
+                        <li>
+                        <%=review.get(0).getMb_nick()%><br>
+                        <%=review.get(0).getReview_content()%><br>
+                        <%=review.get(0).getReview_date()%>
                         </li>
                     </ul>
                 </div>

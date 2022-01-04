@@ -1,13 +1,16 @@
 package com.DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpSession;
 
+import com.DTO.ReviewDTO;
 import com.DTO.memberDTO;
 import com.vo.TBookDTO;
 
@@ -94,5 +97,37 @@ public class ReviewDAO {
 			
 			return cnt;
 		}
+	
+	public ArrayList<ReviewDTO> selectReview() {
+		ArrayList<ReviewDTO> review = new ArrayList<ReviewDTO>();
+
+		try {
+			getConn();
+
+			String sql = "select a.review_content, a.star_point, a.review_date, a.mb_nick from t_review a, t_book b where a.book_title = b.book_title order by a.star_point";
+			
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String review_content = rs.getString(1);
+				Double review_star = rs.getDouble(2);
+				Date review_date = rs.getDate(3);
+				String mb_nick = rs.getString(4);
+
+				review.add(new ReviewDTO(review_content, review_star, review_date, mb_nick));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			close();
+		}
+
+		return review;
+	}
+
+	
 			
 }
