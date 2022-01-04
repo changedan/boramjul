@@ -294,10 +294,12 @@
             <!--도서 해쉬태그-->
             <br>
             <ul class=book_tag style="list-style: none; margin-left: 40px; margin-bottom: 20px; padding-left: 0px; display: inline-flex;">
-                <li>#추리소설</li>
-                <li>#흥미진진</li>
-                <li>#스릴</li>
-                <li>#수사</li>
+            <% for (int i = 0; i<review.size(); i++){ %>
+            <%if (review.get(i).getBook_title().equals(book.getBookTitle())){ %>
+                <li><%=review.get(i).getReview_tag1()%></li>
+                <li><%=review.get(i).getReview_tag2()%></li>
+                <li><%=review.get(i).getReview_tag3()%></li>
+            <%} }%>
             </ul>
             <hr>
             <!--도서평가-->

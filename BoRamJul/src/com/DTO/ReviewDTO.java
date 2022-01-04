@@ -15,12 +15,15 @@ public class ReviewDTO {
    
    
    
-   public ReviewDTO(String review_content, Double star_point, Date review_date, String mb_nick, String book_title) {
+   public ReviewDTO(String review_content, Double star_point, Date review_date, String mb_nick, String book_title, String review_tag1, String review_tag2, String review_tag3) {
       this.review_content = review_content;
       this.star_point = star_point;
       this.review_date = review_date;
       this.mb_nick = mb_nick;
       this.book_title = book_title;
+      this.review_tag1 = review_tag1;
+      this.review_tag2 = review_tag2;
+      this.review_tag3 = review_tag3;
       
    }
    
