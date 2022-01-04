@@ -165,7 +165,7 @@
                             <img class="imgsize" src="<%=bestseller.get(i).getBookCover()%>" alt="">
                             <div class="portfolio-overlay">
                                 <h3><%=bestseller.get(i).getBookTitle()%></h3>
-                                <p><%=bestseller.get(i).getBookBrief()%></p>                               
+                                <p style="overflow:auto; margin-top:10px; margin-bottom:10px; width: 750px; height:72px; line-height: 30px;"><%=bestseller.get(i).getBookBrief()%></p>                               
                                 </a>
                             </div>
                         </div>
