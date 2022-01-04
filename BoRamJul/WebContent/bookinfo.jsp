@@ -339,6 +339,7 @@
                             <label for="starpoint_8" class="label_star" title="4" ><span class="blind">4점</span></label>
                             <label for="starpoint_9" class="label_star" title="4.5" ><span class="blind">4.5점</span></label>
                             <label for="starpoint_10" class="label_star" title="5" ><span class="blind">5점</span></label>
+                            <input style="display: none" type="text" name="book_title" value="<%=book.getBookTitle()%>">
                             <input type="radio" name="starpoint" value="0.5" id="starpoint_1" class="star_radio"> 
                             <input type="radio" name="starpoint" value="1" id="starpoint_2" class="star_radio"> 
                             <input type="radio" name="starpoint" value="1.5" id="starpoint_3" class="star_radio"> 
@@ -353,7 +354,7 @@
                         </div>
                     </div>
                     <hr>
-                    <input type="submit" onclick="book_title()" value="작성완료" style="display: inline-block; position: relative; top: 20px; color: white; margin-bottom: 50px;font-weight: bold; background-color: rgb(78, 221, 78);">
+                    <input type="submit" value="작성완료" style="display: inline-block; position: relative; top: 20px; color: white; margin-bottom: 50px;font-weight: bold; background-color: rgb(78, 221, 78);">
                 </form>
             </div>
         </div>

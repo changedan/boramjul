@@ -21,20 +21,24 @@ public class ReviewCon extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		memberDTO dto = (memberDTO)session.getAttribute("dto");
-		TBookDTO book = (TBookDTO)request.getAttribute("book"); // 책제목 불러오는 방법1
-		// String book_title = request.getParameter("book_title"); // 책제목 불러오는 방법2 (ajax)
-		String book_title = book.getBookTitle();
-		String mb_id = dto.getMbId(); 
+		String book_title = request.getParameter("book_title");
+		String mb_nick = dto.getMbNick(); 
 		String review_content = request.getParameter("review_content");
 		Double star_point = Double.parseDouble(request.getParameter("starpoint"));
 		String tag1 = request.getParameter("tag1");
 		String tag2 = request.getParameter("tag2");
 		String tag3 = request.getParameter("tag3");
 		
-		ReviewDAO dao = new ReviewDAO(book_title, mb_id, review_content, star_point, tag1, tag2, tag3);
+		ReviewDAO dao = new ReviewDAO();
+		int cnt = dao.Review(book_title, mb_nick, review_content, star_point, tag1, tag2, tag3);
 		
+		if (cnt > 0) {
+			response.sendRedirect("main.jsp"); 
+		} else {
+
+		}
 		System.out.println(book_title);
-		System.out.println(mb_id);
+		System.out.println(mb_nick);
 		System.out.println(review_content);
 		System.out.println(star_point);
 		System.out.println(tag1);

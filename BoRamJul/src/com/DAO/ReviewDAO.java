@@ -53,7 +53,7 @@ public class ReviewDAO {
 		}
 	}
 	
-	public ReviewDAO(String book_title, String mb_id, String review_content, double star_point, String tag1, String tag2, String tag3) {
+	public int Review(String book_title, String mb_nick, String review_content, double star_point, String tag1, String tag2, String tag3) {
 				
 			try {
 				getConn();
@@ -64,24 +64,26 @@ public class ReviewDAO {
 				
 				String sql = "insert into t_review("
 						+ "book_title, "
+						+ "mb_nick, "
 						+ "review_content, "
-						+ "review_star, "
-						+ "review_date, "
-						+ "mb_id, "
+						+ "star_point, "
 						+ "review_tag1, "
 						+ "review_tag2, "
-						+ "review_tag3"
-						+ ") values(?,?,?,sysdate,?,?,?,?)";
+						+ "review_tag3) "
+						+ "values(?,?,?,?,?,?,?)";
 	
-				cnt = psmt.executeUpdate();
+				
+				psmt = conn.prepareStatement(sql);
 				
 				psmt.setString(1,book_title);
-				psmt.setString(2,mb_id);
+				psmt.setString(2,mb_nick);
 				psmt.setString(3,review_content);
 				psmt.setDouble(4,star_point);
 				psmt.setString(5,tag1);
 				psmt.setString(6,tag2);
 				psmt.setString(7,tag3);
+				
+				cnt = psmt.executeUpdate();
 	
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -90,6 +92,7 @@ public class ReviewDAO {
 				close();
 			}
 			
+			return cnt;
 		}
 			
 }
