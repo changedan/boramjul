@@ -171,7 +171,7 @@ public class TBookDAO {
 			try {
 				getConn();
 
-				String sql = "SELECT a.book_seq, a.book_title, a.book_brief, a.book_cover FROM T_BOOK a, T_new b WHERE a.book_title = b.book_title order by b.book_rank";
+				String sql = "SELECT a.book_seq, a.book_title, a.book_brief, a.book_cover, a.book_author, a.book_publisher FROM T_BOOK a, T_new b WHERE a.book_title = b.book_title order by b.book_rank";
 
 				psmt = conn.prepareStatement(sql);
 
@@ -182,8 +182,10 @@ public class TBookDAO {
 					String book_title = rs.getString(2);
 					String book_brief = rs.getString(3);
 					String book_cover = rs.getString(4);
+					String book_author = rs.getString(5);
+					String book_publisher = rs.getString(6);
 
-					newbook.add(new TBookDTO(book_seq, book_title, book_brief, book_cover));
+					newbook.add(new TBookDTO(book_seq, book_title, book_brief, book_cover, book_author , book_publisher));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -202,7 +204,7 @@ public class TBookDAO {
 					try {
 						getConn();
 
-						String sql = "SELECT a.book_seq, a.book_title, a.book_brief, a.book_cover FROM T_BOOK a, T_steady b WHERE a.book_title = b.book_title order by b.book_rank";
+						String sql = "SELECT a.book_seq, a.book_title, a.book_brief, a.book_cover, a.book_author, a.book_publisher FROM T_BOOK a, T_steady b WHERE a.book_title = b.book_title order by b.book_rank";
 
 						psmt = conn.prepareStatement(sql);
 
@@ -213,8 +215,10 @@ public class TBookDAO {
 							String book_title = rs.getString(2);
 							String book_brief = rs.getString(3);
 							String book_cover = rs.getString(4);
+							String book_author = rs.getString(5);
+							String book_publisher = rs.getString(6);
 
-							steady.add(new TBookDTO(book_seq, book_title, book_brief, book_cover));
+							steady.add(new TBookDTO(book_seq, book_title, book_brief, book_cover, book_author , book_publisher));
 						}
 					} catch (Exception e) {
 						e.printStackTrace();

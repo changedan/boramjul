@@ -16,7 +16,7 @@ memberDTO dto = (memberDTO) session.getAttribute("dto");
 %>
 <%
 	TBookDAO dao = new TBookDAO();
-ArrayList<TBookDTO> newbook = dao.selectbest();
+ArrayList<TBookDTO> newbook = dao.selectnew();
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -33,7 +33,6 @@ ArrayList<TBookDTO> newbook = dao.selectbest();
 <style>
 .rank_tab {
 	height: 200px;
-	margin: 2px;
 	padding: 0px;
 	display: flex;
 }
