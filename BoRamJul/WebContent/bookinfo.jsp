@@ -252,7 +252,9 @@
                 <br>
                 <li>출간일 : <%=book.getBookDate()%></li>
                 <br>
-                <li>목차 : <br> <%=book.getBookContent()%></li>
+                <li>목차 : 
+                	<p style="overflow:auto; margin-top:10px; margin-bottom:10px; width: 750px; height:72px; line-height: 30px;"><%=book.getBookContent()%></p>
+                </li>
                 <br>
                 <li>개요 : </li>
                 <li>
