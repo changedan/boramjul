@@ -229,13 +229,13 @@ if (fCount > 0) {
 						BZBZ<br>로그인
 					</h2>
 					<hr>
-					<form action="LoginCon" method="post">
+					<form action="LoginCon" method="post" id="loginForm">
 						<input id="loginId" class="mainInfologin" type="text" name="mb_id"
 							placeholder="ID를 입력해주세요"> <input id="loginPw"
 							class="mainInfologin" type="password" name="mb_pw"
 							placeholder="비밀번호를 입력해주세요"> <br>
 						<hr>
-						<input type="submit" class="loginsub" value="로그인"> <br>
+						<input type="submit" class="loginsub" value="로그인" form="loginForm"> <br>
 						<br>
 					</form>
 				</div>
@@ -292,12 +292,11 @@ if (fCount > 0) {
 								if (board.getLev() > 0) { // 답변글일 경우 
 								for (int k = 0; k < board.getLev(); k++) {
 							%> &nbsp;&nbsp; <%
- 	}
- %> ⤷ <%
- 	} // if end
- %> <%-- 제목을 클릭하면 get 방식으로 해당 항목의 no값과 pageNum을 갖고 content.jsp로 이동 --%>
-							<a
-							href="content.jsp?no=<%=board.getNo()%>&pageNum=<%=currentPage%>"><%=board.getSubject()%></a>
+				 	}
+				 %> ⤷ <%
+				 	} // if end
+				 %> <%-- 제목을 클릭하면 get 방식으로 해당 항목의 no값과 pageNum을 갖고 content.jsp로 이동 --%>
+					<a href="content.jsp?no=<%=board.getNo()%>&pageNum=<%=currentPage%>"><%=board.getSubject()%></a>
 						</td>
 						<td><%=df.format(board.getReg_date())%></td>
 						<td><%=board.getReadCount()%></td>
@@ -347,13 +346,13 @@ if (fCount > 0) {
 					<tr>
 						<td colspan="6" align="right">
 							<%-- 버튼을 클릭하면 writeForm.jsp로 이동 --%> <%
- 	if (dto == null) {
- %> <%
- 	} else if (dto != null) {
- %> <input type="button" value="글작성"
-							onclick="location.href='writeForm.jsp'"> <%
- 	}
- %>
+					 	if (dto == null) {
+					 %> <%
+					 	} else if (dto != null) {
+					 %> <input type="button" value="글작성"
+												onclick="location.href='writeForm.jsp'"> <%
+					 	}
+					 %>
 						</td>
 					</tr>
 					<tr>
@@ -376,37 +375,37 @@ if (fCount > 0) {
 
 								if (startPage > pageBlock) { // 페이지 블록수보다 startPage가 클경우 이전 링크 생성
 							%> <a href="list.jsp?pageNum=<%=startPage - 5%>">◀</a> <%
- 	}
-
- for (int i = startPage; i <= endPage; i++) { // 페이지 블록 번호
- if (i == currentPage) { // 현재 페이지에는 링크를 설정하지 않음
- %> [<%=i%>] <%
- 	} else { // 현재 페이지가 아닌 경우 링크 설정
- %> <a href="list.jsp?pageNum=<%=i%>">[<%=i%>]
-						</a> <%
- 	}
- } // for end
-
- if (endPage < pageCount) { // 현재 블록의 마지막 페이지보다 페이지 전체 블록수가 클경우 다음 링크 생성
- %> <a href="list.jsp?pageNum=<%=startPage + 5%>">▶</a> <%
- 	}
- } else if (fCount > 0) { // 페이징 처리(검색 데이터)
- // 검색된 레코드의 총 페이지의 수
- int pageCount = fCount / pageSize + (fCount % pageSize == 0 ? 0 : 1);
- // 한 페이지에 보여줄 페이지 블럭(링크) 수
- int pageBlock = 10;
- // 한 페이지에 보여줄 시작 및 끝 번호(예 : 1, 2, 3 ~ 10 / 11, 12, 13 ~ 20)
- int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
- int endPage = startPage + pageBlock - 1;
-
- // 마지막 페이지가 총 페이지 수 보다 크면 endPage를 pageCount로 할당
- if (endPage > pageCount) {
- endPage = pageCount;
- }
-
- if (startPage > pageBlock) {
- %> <a
-							href="list.jsp?pageNum=<%=startPage - 10%>&sel=<%=sel%>&find=<%=find%>">◀</a>
+							 	}
+							
+							 for (int i = startPage; i <= endPage; i++) { // 페이지 블록 번호
+							 if (i == currentPage) { // 현재 페이지에는 링크를 설정하지 않음
+							 %> [<%=i%>] <%
+							 	} else { // 현재 페이지가 아닌 경우 링크 설정
+							 %> <a href="list.jsp?pageNum=<%=i%>">[<%=i%>]
+													</a> <%
+							 	}
+							 } // for end
+							
+							 if (endPage < pageCount) { // 현재 블록의 마지막 페이지보다 페이지 전체 블록수가 클경우 다음 링크 생성
+							 %> <a href="list.jsp?pageNum=<%=startPage + 5%>">▶</a> <%
+							 	}
+							 } else if (fCount > 0) { // 페이징 처리(검색 데이터)
+							 // 검색된 레코드의 총 페이지의 수
+							 int pageCount = fCount / pageSize + (fCount % pageSize == 0 ? 0 : 1);
+							 // 한 페이지에 보여줄 페이지 블럭(링크) 수
+							 int pageBlock = 10;
+							 // 한 페이지에 보여줄 시작 및 끝 번호(예 : 1, 2, 3 ~ 10 / 11, 12, 13 ~ 20)
+							 int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
+							 int endPage = startPage + pageBlock - 1;
+							
+							 // 마지막 페이지가 총 페이지 수 보다 크면 endPage를 pageCount로 할당
+							 if (endPage > pageCount) {
+							 endPage = pageCount;
+							 }
+							
+							 if (startPage > pageBlock) {
+							 %> <a
+													href="list.jsp?pageNum=<%=startPage - 10%>&sel=<%=sel%>&find=<%=find%>">◀</a>
 							<%
 								}
 
@@ -431,12 +430,12 @@ if (fCount > 0) {
 				</tbody>
 			</table>
 			<%-- 검색어 입력 form / get방식 / option value는 데이터베이스 칼럼과 동일하게 설정 --%>
-			<form method="get" action="list.jsp">
+			<form method="get" action="list.jsp" id="form2">
 				<select name="sel">
 					<option value="name">이름</option>
 					<option value="subject">제목</option>
 				</select> <input type="text" name="find" id="find"> <input
-					type="submit" value="검색">
+					type="submit" value="검색" form="form2">
 			</form>
 	</center>
 
@@ -548,7 +547,7 @@ if (fCount > 0) {
 			});
 		}
 		$(function() {
-			$("form").submit(function() {
+			$("#form2").submit(function() {
 				if ($("#find").val() === "") {
 					alert("검색어를 입력하세요.");
 					$("#find").focus();
