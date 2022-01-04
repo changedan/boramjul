@@ -35,8 +35,6 @@
 	height: 200px;
 	margin: 2px;
 	padding: 0px;
-	border-top: 1px dotted black;
-	border-bottom: 1px dotted black;
 	display: flex;
 }
 
@@ -73,9 +71,9 @@
 					<%
 						if (dto == null) {
 					%>
-					<a href="#" onclick="openlogin()"
+					<a href="main.jsp" onclick="openlogin()"
 						style="font-size: 20px; font-weight: bold;">로그인&nbsp;&nbsp;&nbsp;</a>
-					<a href="#" onclick="openjoin()"
+					<a href="main.jsp" onclick="openjoin()"
 						style="font-size: 20px; font-weight: bold;">회원가입</a>
 					<%
 						} else {
@@ -96,7 +94,7 @@
 						<li><a href="booklist.jsp">베스트셀러</a></li>
 						<li><a href="newlist.jsp">신간도서</a></li>
 						<li><a href="steadylist.jsp">스테디셀러</a>
-						<li><a href="#our-team">자유게시판</a></li>
+						<li><a href="list.jsp">자유게시판</a></li>
 					</ul>
 					<!-- /.main-menu -->
 				</div>
