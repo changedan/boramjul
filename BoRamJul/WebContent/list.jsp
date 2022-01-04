@@ -25,7 +25,7 @@
 String sel = request.getParameter("sel"); // 검색 옵션의 value
 String find = request.getParameter("find"); // 검색어 value
 
-int pageSize = 10; // 한 페이지에 출력할 레코드 수
+int pageSize = 5; // 한 페이지에 출력할 레코드 수
 
 // 페이지 링크를 클릭한 번호 / 현재 페이지
 String pageNum = request.getParameter("pageNum");
@@ -363,7 +363,7 @@ if (fCount > 0) {
 								// 총 페이지의 수
 								int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 								// 한 페이지에 보여줄 페이지 블럭(링크) 수
-								int pageBlock = 10;
+								int pageBlock = 3;
 								// 한 페이지에 보여줄 시작 및 끝 번호(예 : 1, 2, 3 ~ 10 / 11, 12, 13 ~ 20)
 								int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
 								int endPage = startPage + pageBlock - 1;
@@ -374,7 +374,7 @@ if (fCount > 0) {
 								}
 
 								if (startPage > pageBlock) { // 페이지 블록수보다 startPage가 클경우 이전 링크 생성
-							%> <a href="list.jsp?pageNum=<%=startPage - 5%>">◀</a> <%
+							%> <a href="list.jsp?pageNum=<%=startPage - 3%>">◀</a> <%
 							 	}
 							
 							 for (int i = startPage; i <= endPage; i++) { // 페이지 블록 번호
@@ -387,7 +387,7 @@ if (fCount > 0) {
 							 } // for end
 							
 							 if (endPage < pageCount) { // 현재 블록의 마지막 페이지보다 페이지 전체 블록수가 클경우 다음 링크 생성
-							 %> <a href="list.jsp?pageNum=<%=startPage + 5%>">▶</a> <%
+							 %> <a href="list.jsp?pageNum=<%=startPage + 3%>">▶</a> <%
 							 	}
 							 } else if (fCount > 0) { // 페이징 처리(검색 데이터)
 							 // 검색된 레코드의 총 페이지의 수
