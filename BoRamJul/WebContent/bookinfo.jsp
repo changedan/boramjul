@@ -258,7 +258,7 @@
         <!-- /.main-header -->
     </div>
     <hr class="hr_main" style="width:80%;">
-	<!-- <center> -->
+	<center>
     <div class="book_main">
         <!--도서 이미지-->
         <div class="book_img" style="display: inline-block; width: 420px; height: 700px; margin-right: 40px; margin-top: 0px; margin-bottom: 5px; align-content: center; padding-top: 0px;">
@@ -267,7 +267,7 @@
             <img src="<%=book.getBookCover() %>" style="width: 420px; height: 560px;">
         </div>
         <!--책 정보-->
-        <div class="book_info" style="width: 800px; height: 800px; display: inline-block; border-left: 1px solid gray; margin-bottom: 5px; text-align: left;">
+        <div class="book_info" style="width: 800px; max-height:1000px; display: inline-block; border-left: 1px solid gray; margin-bottom: 5px; text-align: left;">
 			<%if (dto==null) {%>
 			<%}else if(dto!=null){%>
             <button onclick="reviewOn()" style="font-size: 18px; align-content: center; position: relative; padding: 5px; left: 650px; width: 120px; height: 35px; background-color: rgb(127, 226, 27); color: white; cursor: pointer;">
@@ -302,18 +302,17 @@
             <hr>
             <!--도서평가-->
             <div class="my_comment">
-                <h2 style="text-align: center; margin-top: 10px; margin-bottom: 2px; font-size: 25px;">당신의 평가</h2>
-                <h1 style="text-align: center; margin-top: 2px; margin-bottom: 10px; font-size: 20px;">★★★★★</h1>
+                <h2 style="text-align: center; margin-top: 10px; margin-bottom: 2px; font-size: 25px;">도서리뷰</h2>
                 <hr>
                 <div class="comment" style="display: inline-block; width: 350px; border-right: 1px solid gray; margin-top: 10px; margin-left: 38px; padding-right: 40px;">
                     <ul>
-						<% for (int i = 0; i<review.size(); i++){ %>
+						<% for (int i = 0; i<3; i++){ %>
 	                        <li>
 	                        	<%if (review.get(i).getBook_title().equals(book.getBookTitle())){ %>
-						                        <%=review.get(i).getMb_nick()%><br>
-									<%=review.get(i).getReview_content()%><br>
-						            	<%=review.get(i).getStar_point() %>
-						            	<% double star = review.get(i).getStar_point();
+						            <%=review.get(i).getMb_nick()%><br>
+									<p style="height:20px; overflow:hidden; margin-top: 0px; margin-bottom: 0px;"><%=review.get(i).getReview_content()%></p>
+						            <%=review.get(i).getStar_point() %>
+						            <% double star = review.get(i).getStar_point();
 						            		if(star < 1 ){ %>
 						            			<span data-split='★'  id='halfcount' class="halfcount">★</span>
 						            		<%}else{
@@ -337,16 +336,32 @@
                 </div>
                 <div class="comment" style="display: inline-block; width: 350px; margin-left: 15px; margin-top: 10px; border-left: 1px solid gray; padding-right: 40px;">
                     <ul>
-                        <li>★★★★★<br>평가를 남겨주세요
-                        </li>
-                        <li>★★★★★<br>평가를 남겨주세요
-                        </li>
-                        <li>★★★★★<br>평가를 남겨주세요
-                        </li>
-                        <li>★★★★★<br>평가를 남겨주세요
-                        </li>
-                        <li>★★★★★<br>평가를 남겨주세요
-                        </li>
+						<% for (int i = 3; i<6; i++){ %>
+	                        <li>
+	                        	<%if (review.get(i).getBook_title().equals(book.getBookTitle())){ %>
+						            <%=review.get(i).getMb_nick()%><br>
+									<p style="height:20px; overflow:hidden; margin-top: 0px; margin-bottom: 0px;"><%=review.get(i).getReview_content()%></p>
+						            <%=review.get(i).getStar_point() %>
+						            <% double star = review.get(i).getStar_point();
+						            		if(star < 1 ){ %>
+						            			<span data-split='★'  id='halfcount' class="halfcount">★</span>
+						            		<%}else{
+						            			for( int k = 1; k <= 5; k++){
+													if(star > 0.9){%>
+														<span class='counted'>★</span>
+													<%}else if(0.1 >= star){%>
+														<span class='uncounted'>★</span>
+													<%}else{%>
+														<span data-split='★' id='halfcount' class="halfcount">★</span>
+						            				<%}
+						            				System.out.println(star);
+						            				star --;
+						            				%>
+						            		<%}%>
+						            	<%}%>
+						            		
+	                        </li>
+                        <%}}%>
                     </ul>
                 </div>
             </div>
