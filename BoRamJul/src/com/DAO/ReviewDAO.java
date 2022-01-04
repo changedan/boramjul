@@ -104,7 +104,7 @@ public class ReviewDAO {
       try {
          getConn();
 
-         String sql = "select a.review_content, a.star_point, a.review_date, a.mb_nick from t_review a, t_book b where a.book_title = b.book_title order by a.star_point";
+         String sql = "select a.review_content, a.star_point, a.review_date, a.mb_nick, a.book_title from t_review a, t_book b where a.book_title = b.book_title order by a.star_point";
          
          psmt = conn.prepareStatement(sql);
 
@@ -115,8 +115,9 @@ public class ReviewDAO {
             Double star_point = rs.getDouble(2);
             Date review_date = rs.getDate(3);
             String mb_nick = rs.getString(4);
+            String book_title = rs.getString(5);
 
-            review.add(new ReviewDTO(review_content, star_point, review_date, mb_nick));
+            review.add(new ReviewDTO(review_content, star_point, review_date, mb_nick, book_title));
          }
       } catch (Exception e) {
          e.printStackTrace();

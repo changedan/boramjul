@@ -242,7 +242,7 @@
         <!--도서 이미지-->
         <div class="book_img" style="display: inline-block; width: 420px; height: 700px; margin-right: 40px; margin-top: 0px; margin-bottom: 5px; align-content: center; padding-top: 0px;">
             <br> <br>
-            <h2 style="margin-right: 0px; margin-top: 0px; margin-bottom: 35px; width: 420px; text-align: center; font-size: 40px;"><%=book.getBookTitle() %></h2>
+            <h2 style="margin-right: 0px; margin-top: 0px; margin-bottom: 35px; width: 420px; text-align: center; font-size: 40px;"><%=book.getBookTitle()%></h2>
             <img src="<%=book.getBookCover() %>" style="width: 420px; height: 560px;">
         </div>
         <!--책 정보-->
@@ -286,11 +286,14 @@
                 <hr>
                 <div class="comment" style="display: inline-block; width: 350px; border-right: 1px solid gray; margin-top: 10px; margin-left: 38px; padding-right: 40px;">
                     <ul>
-                        <li>
-                        닉네임 : <%=review.get(0).getMb_nick()%><br>
-			리뷰내용 : <%=review.get(0).getReview_content()%><br>
-                       작성일 <%=review.get(0).getReview_date()%>
-                        </li>
+						<% for (int i = 0; i<review.size(); i++){ %>
+	                        <li>
+	                        	<%if (review.get(i).getBook_title().equals(book.getBookTitle())){ %>
+						                        닉네임 : <%=review.get(i).getMb_nick()%><br>
+									리뷰내용 : <%=review.get(i).getReview_content()%><br>
+						                       작성일 : <%=review.get(i).getReview_date()%>
+	                        </li>
+                        <%}}%>
                     </ul>
                 </div>
                 <div class="comment" style="display: inline-block; width: 350px; margin-left: 15px; margin-top: 10px; border-left: 1px solid gray; padding-right: 40px;">
