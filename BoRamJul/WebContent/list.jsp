@@ -71,17 +71,7 @@ if (fCount > 0) {
 <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <title>보람줄 - 북작북작</title>
-<script>
-	$(function() {
-		$("form").submit(function() {
-			if ($("#find").val() === "") {
-				alert("검색어를 입력하세요.");
-				$("#find").focus();
-				return false;
-			}
-		})
-	})
-</script>
+
 <style>
 #board {
 	width: 60%;
@@ -145,23 +135,115 @@ if (fCount > 0) {
 				<%
 					if (dto == null) {
 				%>
-				<a href="main.jsp" onclick=""
-					style="font-size: 20px; font-weight: bold;">로그인&nbsp;&nbsp;&nbsp;</a>
-				<a href="main.jsp" onclick=""
+				<a onclick="openlogin()" style="font-size: 20px; font-weight: bold;">로그인&nbsp;&nbsp;&nbsp;</a>
+				<a href="#" onclick="openjoin()"
 					style="font-size: 20px; font-weight: bold;">회원가입</a>
 				<%
 					} else {
 				%>
 				<a href="LogoutCon" style="font-size: 20px; font-weight: bold;">로그아웃&nbsp;&nbsp;&nbsp;</a>
-				<a href="#" onclick=""
+				<a href="#" onclick="openinfo()"
 					style="font-size: 20px; font-weight: bold;">회원정보[닉네임:<%=dto.getMbNick()%>]
 				</a>
+				<div id="overinfo" class="overlayinfo" style="z-index: 2000;">
+					<div class="joinOver">
+						<span class="closebtn" onclick="closeinfo()" title="close">X</span>
+						<h2 style="text-align: center;">
+							BZBZ<br>회원정보
+						</h2>
+						<hr>
+						<form>
+							<ul style="list-style: none;">
+								<li>회원 ID : <%=dto.getMbId()%></li>
+								<br>
+								<br>
+								<li>닉네임 : <%=dto.getMbNick()%>
+								</li>
+								<br>
+								<br>
+								<li>성별 : <%
+									String gender = "";
+								if (dto.getMbGender().equals("M")) {
+									gender = "남";
+								} else {
+									gender = "여";
+								}
+								%> <%=gender%></li>
+							</ul>
+							<hr>
+							<hr>
+						</form>
+					</div>
+				</div>
 				<%
 					}
 				%>
+
+			</div>
+			<div id="overjoin" class="overlayjoin" style="z-index: 2000;">
+				<div class="joinOver">
+					<span class="closebtn" onclick="closejoin()" title="close">X</span>
+					<h2 style="text-align: center;">
+						BZBZ<br>회원가입
+					</h2>
+					<hr>
+					<form action="JoinCon" method="post">
+						<input class="mainInfojoin" type="text" id="join_id" name="mb_id"
+							placeholder="ID를 입력해주세요">
+						<button type="button" id="check" onclick="idCheck()">중복확인</button>
+						<p id="result"></p>
+						<input class="mainInfojoin" type="password" onchange="pwcheck()"
+							id="pw1" name="mb_pw" placeholder="비밀번호를 입력해주세요"> <br>
+						<input class="mainInfojoin" type="password" onchange="pwcheck()"
+							id="pw2" name="mb_pw" placeholder="비밀번호를 다시 입력해주세요"> <br>
+
+						<input class="mainInfojoin" type="text" id="join_nick"
+							name="mb_nick" placeholder="사용하실 닉네임을 입력해주세요">
+						<button type="button" id="check" onclick="nickCheck()">중복확인</button>
+						<p id="result1"></p>
+						<br> <label for="gen" style="margin-left: 35px;">성별<br>
+							<input name="mb_gender" type="radio" style="margin-left: 50px;"
+							name="성별" value="M">남 <input name="mb_gender"
+							type="radio" name="성별" value="F">여
+						</label><br> <br> <label for="age" style="margin-left: 35px;">연령<br>
+							<input id="age" name="mb_age" type="radio"
+							style="margin-left: 50px;" value="10">10대 <input id="age"
+							name="mb_age" type="radio" value="20">20대 <input id="age"
+							name="mb_age" type="radio" value="30">30대<br> <input
+							id="age" name="mb_age" type="radio" style="margin-left: 50px;"
+							value="40">40대 <input id="age" name="mb_age" type="radio"
+							value="50">50대 <input id="age" name="mb_age" type="radio"
+							value="60">60대 이상
+						</label><br> <br>
+						<hr>
+						<p id="pw_result"></p>
+
+						<br>
+					</form>
+				</div>
+			</div>
+			<div id="overlogin" class="overlaylogin" style="z-index: 2000;">
+				<div class="joinOver">
+					<span class="closebtn" onclick="closelogin()" title="close">X</span>
+					<h2 style="text-align: center;">
+						BZBZ<br>로그인
+					</h2>
+					<hr>
+					<form action="LoginCon" method="post">
+						<input id="loginId" class="mainInfologin" type="text" name="mb_id"
+							placeholder="ID를 입력해주세요"> <input id="loginPw"
+							class="mainInfologin" type="password" name="mb_pw"
+							placeholder="비밀번호를 입력해주세요"> <br>
+						<hr>
+						<input type="submit" class="loginsub" value="로그인"> <br>
+						<br>
+					</form>
+				</div>
 			</div>
 			</nav>
+
 		</div>
+
 		<div class="main-header">
 			<div class="container">
 				<div id="menu-wrapper">
@@ -195,185 +277,285 @@ if (fCount > 0) {
 						<th style="width: 100px;">조희수</th>
 					</tr>
 					<%
-				if (count > 0 && fCount == 0 && find == null) { // 데이터베이스에 데이터가 있으면
-					int number = count - (currentPage - 1) * pageSize; // 글 번호 순번 
-					for (int i = 0; i < list.size(); i++) {
-						ExBoardDTO board = list.get(i); // 반환된 list에 담긴 참조값 할당
+						if (count > 0 && fCount == 0 && find == null) { // 데이터베이스에 데이터가 있으면
+						int number = count - (currentPage - 1) * pageSize; // 글 번호 순번 
+						for (int i = 0; i < list.size(); i++) {
+							ExBoardDTO board = list.get(i); // 반환된 list에 담긴 참조값 할당
 					%>
 				</thead>
 				<tbody>
 					<tr>
-				<td><%=number--%></td>
-				<td><%=board.getName()%></td>
-				<td>
+						<td><%=number--%></td>
+						<td><%=board.getName()%></td>
+						<td>
+							<%
+								if (board.getLev() > 0) { // 답변글일 경우 
+								for (int k = 0; k < board.getLev(); k++) {
+							%> &nbsp;&nbsp; <%
+ 	}
+ %> ⤷ <%
+ 	} // if end
+ %> <%-- 제목을 클릭하면 get 방식으로 해당 항목의 no값과 pageNum을 갖고 content.jsp로 이동 --%>
+							<a
+							href="content.jsp?no=<%=board.getNo()%>&pageNum=<%=currentPage%>"><%=board.getSubject()%></a>
+						</td>
+						<td><%=df.format(board.getReg_date())%></td>
+						<td><%=board.getReadCount()%></td>
+					</tr>
 					<%
-						if(board.getLev() > 0){ // 답변글일 경우 
-							for(int k = 0; k < board.getLev(); k++){
+						}
+					} else if (count == 0) { // 데이터가 없으면
 					%>
-						&nbsp;&nbsp;
-					<%			
-							}
-					%>
-						⤷
-					<%	
-						} // if end
-					%>
-					<%-- 제목을 클릭하면 get 방식으로 해당 항목의 no값과 pageNum을 갖고 content.jsp로 이동 --%>
-					<a href="content.jsp?no=<%=board.getNo()%>&pageNum=<%=currentPage%>"><%=board.getSubject()%></a>
-				</td>
-				<td><%=df.format(board.getReg_date())%></td>
-				<td><%=board.getReadCount()%></td>
-			</tr>
-			<%
-					}
-				} else if(count == 0) { // 데이터가 없으면
-			%>
-			<tr>
-				<td colspan="6" align="center">게시글이 없습니다.</td>
-			</tr>
-			<%
-				} else if(count > 0 && fCount != 0){ // 검색한 데이터가 있으면
+					<tr>
+						<td colspan="6" align="center">게시글이 없습니다.</td>
+					</tr>
+					<%
+						} else if (count > 0 && fCount != 0) { // 검색한 데이터가 있으면
 					int number = fCount - (currentPage - 1) * pageSize; // 글 번호 순번
-					for(int i = 0; i<flist.size(); i++){
+					for (int i = 0; i < flist.size(); i++) {
 						ExBoardDTO board = flist.get(i);
-			%>
-			<tr>
-				<td><%=number--%></td>
-				<td><%=board.getName()%></td>
-				<td>
+					%>
+					<tr>
+						<td><%=number--%></td>
+						<td><%=board.getName()%></td>
+						<td>
+							<%
+								if (board.getLev() > 0) { // 답변글일 경우 
+								for (int k = 0; k < board.getLev(); k++) {
+							%> &nbsp;&nbsp; <%
+ 	}
+ %> ⤷ <%
+ 	} // if end
+ %> <%-- 제목을 클릭하면 get 방식으로 해당 항목의 no값과 pageNum, sel, find를 갖고 content.jsp로 이동 --%>
+							<a
+							href="content.jsp?no=<%=board.getNo()%>&pageNum=<%=currentPage%>&sel=<%=sel%>&find=<%=find%>"><%=board.getSubject()%></a>
+						</td>
+						<td><%=df.format(board.getReg_date())%></td>
+						<td><%=board.getReadCount()%></td>
+						<td><%=board.getIp()%></td>
+					</tr>
 					<%
-						if(board.getLev() > 0){ // 답변글일 경우 
-							for(int k = 0; k < board.getLev(); k++){
+						}
+					} else { // 검색된 데이터가 없으면
 					%>
-						&nbsp;&nbsp;
-					<%			
-							}
-					%>
-						⤷
-					<%	
-						} // if end
-					%>
-					<%-- 제목을 클릭하면 get 방식으로 해당 항목의 no값과 pageNum, sel, find를 갖고 content.jsp로 이동 --%> 
-					<a href="content.jsp?no=<%=board.getNo()%>&pageNum=<%=currentPage%>&sel=<%=sel%>&find=<%=find%>"><%=board.getSubject()%></a>
-				</td>
-				<td><%=df.format(board.getReg_date())%></td>
-				<td><%=board.getReadCount()%></td>
-				<td><%=board.getIp()%></td>
-			</tr>
-			<%			
-					}
-				} else { // 검색된 데이터가 없으면
-			%>
-			<tr>
-				<td colspan="6" align="center">게시글이 없습니다.</td>
-			</tr>
-			<%		
-				}
-			%>
-			<tr>
-				<td colspan="6" align="right">
-					<%-- 버튼을 클릭하면 writeForm.jsp로 이동 --%>
-					<%if(dto==null) {%>
-					<%}else if(dto!=null){ %>
-					<input type="button" value="글작성"
-					onclick="location.href='writeForm.jsp'">
-					<%} %>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="6" align="center">
-				
-					<%	// 페이징  처리(모든 레코드)
-						if(count > 0 && fCount == 0 && find == null){
-							// 총 페이지의 수
-							int pageCount = count / pageSize + (count%pageSize == 0 ? 0 : 1);
-							// 한 페이지에 보여줄 페이지 블럭(링크) 수
-							int pageBlock = 10;
-							// 한 페이지에 보여줄 시작 및 끝 번호(예 : 1, 2, 3 ~ 10 / 11, 12, 13 ~ 20)
-							int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
-							int endPage = startPage + pageBlock - 1;
-							
-							// 마지막 페이지가 총 페이지 수 보다 크면 endPage를 pageCount로 할당
-							if(endPage > pageCount){
-								endPage = pageCount;
-							}
-							
-							if(startPage > pageBlock){ // 페이지 블록수보다 startPage가 클경우 이전 링크 생성
-					%>
-								<a href="list.jsp?pageNum=<%=startPage - 5%>">◀</a>	
-					<%			
-							}
-							
-							for(int i=startPage; i <= endPage; i++){ // 페이지 블록 번호
-								if(i == currentPage){ // 현재 페이지에는 링크를 설정하지 않음
-					%>
-									[<%=i %>]
-					<%									
-								}else{ // 현재 페이지가 아닌 경우 링크 설정
-					%>
-									<a href="list.jsp?pageNum=<%=i%>">[<%=i %>]</a>
-					<%	
-								}
-							} // for end
-							
-							if(endPage < pageCount){ // 현재 블록의 마지막 페이지보다 페이지 전체 블록수가 클경우 다음 링크 생성
-					%>
-								<a href="list.jsp?pageNum=<%=startPage + 5%>">▶</a>
-					<%			
-							}
-						}else if(fCount > 0){ // 페이징 처리(검색 데이터)
-							// 검색된 레코드의 총 페이지의 수
-							int pageCount = fCount / pageSize + (fCount%pageSize == 0 ? 0 : 1);
-							// 한 페이지에 보여줄 페이지 블럭(링크) 수
-							int pageBlock = 10;
-							// 한 페이지에 보여줄 시작 및 끝 번호(예 : 1, 2, 3 ~ 10 / 11, 12, 13 ~ 20)
-							int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
-							int endPage = startPage + pageBlock - 1;
-							
-							// 마지막 페이지가 총 페이지 수 보다 크면 endPage를 pageCount로 할당
-							if(endPage > pageCount){
-								endPage = pageCount;
-							}
-							
-							if(startPage > pageBlock){
-					%>
-								<a href="list.jsp?pageNum=<%=startPage - 10%>&sel=<%=sel%>&find=<%=find%>">◀</a>	
-					<%			
-							}
-							
-							for(int i = startPage; i <= endPage; i++){
-								if(i == currentPage){ // 현재 페이지는 링크를 설정하지 않음
-					%>
-								[<%=i%>]
-					<%				
-								}else{ // 현재 페이지가 아닌 경우 링크
-					%>
-								<a href="list.jsp?pageNum=<%=i%>&sel=<%=sel%>&find=<%=find%>">[<%=i %>]</a>
-					<%				
-								}
-							}
-							
-							if(endPage < pageCount){
-					%>
-								<a href="list.jsp?pageNum=<%=startPage + 10 %>&sel=<%=sel%>&find=<%=find%>">▶</a>
-					<%			
-							}
+					<tr>
+						<td colspan="6" align="center">게시글이 없습니다.</td>
+					</tr>
+					<%
 						}
 					%>
-				</td>
-			</tr>
+					<tr>
+						<td colspan="6" align="right">
+							<%-- 버튼을 클릭하면 writeForm.jsp로 이동 --%> <%
+ 	if (dto == null) {
+ %> <%
+ 	} else if (dto != null) {
+ %> <input type="button" value="글작성"
+							onclick="location.href='writeForm.jsp'"> <%
+ 	}
+ %>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6" align="center">
+							<%
+								// 페이징  처리(모든 레코드)
+							if (count > 0 && fCount == 0 && find == null) {
+								// 총 페이지의 수
+								int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+								// 한 페이지에 보여줄 페이지 블럭(링크) 수
+								int pageBlock = 10;
+								// 한 페이지에 보여줄 시작 및 끝 번호(예 : 1, 2, 3 ~ 10 / 11, 12, 13 ~ 20)
+								int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
+								int endPage = startPage + pageBlock - 1;
+
+								// 마지막 페이지가 총 페이지 수 보다 크면 endPage를 pageCount로 할당
+								if (endPage > pageCount) {
+									endPage = pageCount;
+								}
+
+								if (startPage > pageBlock) { // 페이지 블록수보다 startPage가 클경우 이전 링크 생성
+							%> <a href="list.jsp?pageNum=<%=startPage - 5%>">◀</a> <%
+ 	}
+
+ for (int i = startPage; i <= endPage; i++) { // 페이지 블록 번호
+ if (i == currentPage) { // 현재 페이지에는 링크를 설정하지 않음
+ %> [<%=i%>] <%
+ 	} else { // 현재 페이지가 아닌 경우 링크 설정
+ %> <a href="list.jsp?pageNum=<%=i%>">[<%=i%>]
+						</a> <%
+ 	}
+ } // for end
+
+ if (endPage < pageCount) { // 현재 블록의 마지막 페이지보다 페이지 전체 블록수가 클경우 다음 링크 생성
+ %> <a href="list.jsp?pageNum=<%=startPage + 5%>">▶</a> <%
+ 	}
+ } else if (fCount > 0) { // 페이징 처리(검색 데이터)
+ // 검색된 레코드의 총 페이지의 수
+ int pageCount = fCount / pageSize + (fCount % pageSize == 0 ? 0 : 1);
+ // 한 페이지에 보여줄 페이지 블럭(링크) 수
+ int pageBlock = 10;
+ // 한 페이지에 보여줄 시작 및 끝 번호(예 : 1, 2, 3 ~ 10 / 11, 12, 13 ~ 20)
+ int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
+ int endPage = startPage + pageBlock - 1;
+
+ // 마지막 페이지가 총 페이지 수 보다 크면 endPage를 pageCount로 할당
+ if (endPage > pageCount) {
+ endPage = pageCount;
+ }
+
+ if (startPage > pageBlock) {
+ %> <a
+							href="list.jsp?pageNum=<%=startPage - 10%>&sel=<%=sel%>&find=<%=find%>">◀</a>
+							<%
+								}
+
+							for (int i = startPage; i <= endPage; i++) {
+							if (i == currentPage) { // 현재 페이지는 링크를 설정하지 않음
+							%> [<%=i%>] <%
+								} else { // 현재 페이지가 아닌 경우 링크
+							%> <a href="list.jsp?pageNum=<%=i%>&sel=<%=sel%>&find=<%=find%>">[<%=i%>]
+						</a> <%
+ 	}
+ }
+
+ if (endPage < pageCount) {
+ %> <a
+							href="list.jsp?pageNum=<%=startPage + 10%>&sel=<%=sel%>&find=<%=find%>">▶</a>
+							<%
+								}
+							}
+							%>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 			<%-- 검색어 입력 form / get방식 / option value는 데이터베이스 칼럼과 동일하게 설정 --%>
 			<form method="get" action="list.jsp">
-			<select name="sel">
-				<option value="name">이름</option>
-				<option value="subject">제목</option>
-			</select>
-			<input type="text" name="find" id="find">
-			<input type="submit" value="검색">
-		</form>
+				<select name="sel">
+					<option value="name">이름</option>
+					<option value="subject">제목</option>
+				</select> <input type="text" name="find" id="find"> <input
+					type="submit" value="검색">
+			</form>
 	</center>
 
+
+
+	<script>
+		function openjoin() {
+			document.getElementById("overjoin").style.display = "block";
+		}
+
+		function openlogin() {
+			document.getElementById("overlogin").style.display = "block";
+		}
+
+		function openupdate() {
+			document.getElementById("overUpdate").style.display = "block";
+		}
+
+		function openinfo() {
+			document.getElementById("overinfo").style.display = "block";
+		}
+
+		function closejoin() {
+			document.getElementById("overjoin").style.display = "none";
+		}
+
+		function closelogin() {
+			document.getElementById("overlogin").style.display = "none";
+		}
+
+		function closeupdate() {
+			document.getElementById("overUpdate").style.display = "none";
+		}
+
+		function closeinfo() {
+			document.getElementById("overinfo").style.display = "none";
+		}
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			console.log("로딩");
+
+		});
+	</script>
+
+	<script src="js/vendor/jquery-1.11.0.min.js"></script>
+	<script>
+		window.jQuery
+				|| document
+						.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')
+	</script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		function idCheck() {
+			$.ajax({
+				url : "CheckCon",
+				type : "get",
+				data : {
+					"mb_id" : $('#join_id').val()
+				},
+				success : function(res) {
+					console.log(res)
+					if (res == 'true') {
+						$('#result').html("중복된 아이디입니다.").css('color', 'red');
+					} else {
+						$('#result').html("사용가능한 아이디입니다.")
+								.css('color', 'green');
+					}
+				},
+				error : function() {
+					alert("요청실패!")
+				}
+			});
+		}
+
+		function pwcheck() {
+			if ($('#pw1').val() == $('#pw2').val()) {
+				$('#pw_result')
+						.html(
+								'<input type="submit" class="joinsub" value="회원가입을 완료합니다"> ');
+			} else {
+				$('#pw_result').html("비밀번호가 일치하지 않습니다.").css('color', 'red');
+			}
+		}
+
+		function nickCheck() {
+			$.ajax({
+				url : "nickCheckCon",
+				type : "get",
+				data : {
+					"mb_nick" : $('#join_nick').val()
+				},
+				success : function(res) {
+					console.log(res)
+					if (res == 'true') {
+						$('#result1').html("중복된 닉네임입니다.").css('color', 'red');
+					} else {
+						$('#result1').html("사용가능한 닉네임입니다.").css('color',
+								'green');
+					}
+				},
+				error : function() {
+					alert("요청실패!")
+				}
+			});
+		}
+		$(function() {
+			$("form").submit(function() {
+				if ($("#find").val() === "") {
+					alert("검색어를 입력하세요.");
+					$("#find").focus();
+					return false;
+				}
+			})
+		})
+	</script>
 </body>
 </html>
