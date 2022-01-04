@@ -45,6 +45,13 @@
             left: 0;
             background: rgba(0, 0, 0, 0.2);
         }
+        
+        .imgsize {
+        	min-width: 120px;
+  			min-height: 180px;
+ 			height: 32vmin;
+  			background-color: #e0e0e0;
+        }
     </style>
 </head>
 
@@ -155,11 +162,10 @@
                 <div class="portfolio-item col-md-3 col-sm-6">
                     <a href="BookInfo?no=<%=bestseller.get(i).getBookSeq()%>">
                         <div class="portfolio-thumb">
-                            <img src="<%=bestseller.get(i).getBookCover()%>" alt="">
+                            <img class="imgsize" src="<%=bestseller.get(i).getBookCover()%>" alt="">
                             <div class="portfolio-overlay">
                                 <h3><%=bestseller.get(i).getBookTitle()%></h3>
-                                <p><%=bestseller.get(i).getBookBrief()%></p>
-                                <a href="images/book/book1.jpg" data-rel="lightbox" class="expand"> <i class="fa fa-search"></i>
+                                <p><%=bestseller.get(i).getBookBrief()%></p>                               
                                 </a>
                             </div>
                         </div>
@@ -189,11 +195,10 @@
                 <div class="portfolio-item col-md-3 col-sm-6">
                     <a href="BookInfo?no=<%=newbook.get(i).getBookSeq()%>">
                         <div class="portfolio-thumb">
-                            <img src="<%=newbook.get(i).getBookCover()%>" alt="">
+                            <img class="imgsize" src="<%=newbook.get(i).getBookCover()%>" alt="">
                             <div class="portfolio-overlay">
                                 <h3><%=newbook.get(i).getBookTitle()%></h3>
-                                <p><%=newbook.get(i).getBookBrief()%></p>
-                                <a href="images/book/book1.jpg" data-rel="lightbox" class="expand"> <i class="fa fa-search"></i>
+                                <p><%=newbook.get(i).getBookBrief()%></p>              
                                 </a>
                             </div>
                         </div>
@@ -223,11 +228,10 @@
                 <div class="portfolio-item col-md-3 col-sm-6">
                     <a href="BookInfo?no=<%=steady.get(i).getBookSeq()%>">
                         <div class="portfolio-thumb">
-                            <img src="<%=steady.get(i).getBookCover()%>" alt="">
+                            <img class="imgsize" src="<%=steady.get(i).getBookCover()%>" alt="">
                             <div class="portfolio-overlay">
                                 <h3><%=steady.get(i).getBookTitle()%></h3>
-                                <p><%=steady.get(i).getBookBrief()%></p>
-                                <a href="images/book/book1.jpg" data-rel="lightbox" class="expand"> <i class="fa fa-search"></i>
+                                <p><%=steady.get(i).getBookBrief()%></p>                                
                                 </a>
                             </div>
                         </div>
@@ -284,23 +288,20 @@
             </form>
         </div>
     </div>
+    
     <div id="footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-xs-12 text-left">
                     <span>보람줄 &copy; 2022 북작북작</span>
                 </div>
-                <!-- /.text-center -->
                 <div class="col-md-4 hidden-xs text-right">
                     <a href="#top" id="go-top">맨 위로</a>
                 </div>
-                <!-- /.text-center -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container -->
     </div>
-    <!-- /#footer -->
+    
     <script>
         function openjoin() {
             document.getElementById("overjoin").style.display = "block";
