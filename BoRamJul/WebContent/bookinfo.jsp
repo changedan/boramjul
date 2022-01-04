@@ -23,12 +23,14 @@
             margin-top: 8px;
             margin-bottom: 8px;
         }
-
+		book_main{
+			width: 80%;
+			text-align: left;
+		}
         .comment ul li {
             font-size: 18px;
             list-style: none;
             margin: 3px;
-            border: 1px dotted black;
             overflow: hidden;
             padding: 2px;
         }
@@ -161,13 +163,13 @@
         #news {
             margin-left: 30px;
             width: 1400px;
+            text-align: left;
         }
 
         .info_tab {
             height: 110px;
             margin: 2px;
             padding: 0px;
-            border: 1px dotted black;
             display: flex;
         }
 
@@ -192,7 +194,7 @@
     </style>
 </head>
 
-<body class="site-main" id="sTop" style="width: 1500px;">
+<body class="site-main" id="sTop">
     <!-- /.site-header -->
     <div class="site-header" style="display: block; margin-left: 300px;">
         <div class="container">
@@ -215,10 +217,10 @@
             <div class="container">
                 <div id="menu-wrapper">
                     <ul class="menu-first">
-                        <li><a href="#Bestseller">베스트셀러</a></li>
-                        <li><a href="#Newbooks">신간도서</a></li>
+                        <li><a href="booklist.jsp">베스트셀러</a></li>
+                        <li><a href="newlist.jsp">신간도서</a></li>
                         <li><a href="steadylist.jsp">스테디셀러</a>
-                        <li><a href="#our-team">자유게시판</a></li>
+                        <li><a href="list.jsp">자유게시판</a></li>
                     </ul>
                     <!-- /.main-menu -->
                 </div>
@@ -230,15 +232,16 @@
     </div>
     <hr class="hr_main" style="width:80%;">
 
+	<center>
     <div class="book_main">
         <!--도서 이미지-->
-        <div class="book_img" style="display: inline-block; width: 420px; height: 700px; margin-left: 40px; margin-right: 40px; margin-top: 0px; margin-bottom: 5px; align-content: center; padding-top: 0px;">
+        <div class="book_img" style="display: inline-block; width: 420px; height: 700px; margin-right: 40px; margin-top: 0px; margin-bottom: 5px; align-content: center; padding-top: 0px;">
             <br> <br>
             <h2 style="margin-right: 0px; margin-top: 0px; margin-bottom: 35px; width: 420px; text-align: center; font-size: 40px;"><%=book.getBookTitle() %></h2>
             <img src="<%=book.getBookCover() %>" style="width: 420px; height: 560px;">
         </div>
         <!--책 정보-->
-        <div class="book_info" style="width: 800px; height: 800px; display: inline-block; border-left: 1px solid gray; margin-bottom: 5px;">
+        <div class="book_info" style="width: 800px; height: 800px; display: inline-block; border-left: 1px solid gray; margin-bottom: 5px; text-align: left;">
 			<%if (dto==null) {%>
 			<%}else if(dto!=null){%>
             <button onclick="reviewOn()" style="font-size: 18px; align-content: center; position: relative; padding: 5px; left: 650px; width: 120px; height: 35px; background-color: rgb(127, 226, 27); color: white; cursor: pointer;">
@@ -274,8 +277,7 @@
             <!--도서평가-->
             <div class="my_comment">
                 <h2 style="text-align: center; margin-top: 10px; margin-bottom: 2px; font-size: 25px;">당신의 평가</h2>
-                <h1 style="text-align: center; margin-top: 2px; margin-bottom: 10px; font-size: 20px;">
-                    ★★★★★</h1>
+                <h1 style="text-align: center; margin-top: 2px; margin-bottom: 10px; font-size: 20px;">★★★★★</h1>
                 <hr>
                 <div class="comment" style="display: inline-block; width: 350px; border-right: 1px solid gray; margin-top: 10px; margin-left: 38px; padding-right: 40px;">
                     <ul>
@@ -356,10 +358,12 @@
             </div>
         </div>
     </div>
+	</center>
     <hr>
     <!--블로그 및 뉴스 정보-->
+    <center>
     <div style="margin-top: 10px;">
-        <button class="tab_btn" onclick="blogOn()" style="margin-left: 30px; margin-right: -3px; color: white; background-color: #19ce60;">블로그</button>
+        <button class="tab_btn" onclick="blogOn()" style="margin-right: -3px; color: white; background-color: #19ce60;">블로그</button>
         <button class="tab_btn" onclick="newsOn()" style="margin-left: -3px; color: white; background-color: #3f63bf;">뉴스</button>
         <div id="blog">
             <!-- <div class="info_tab">
@@ -391,7 +395,7 @@
 
         </div>
     </div>
-
+	</center>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script>
         function blogOn() {
@@ -430,7 +434,7 @@
 
                     for (let i = 0; i < blog.length; i++) {
                         blog_content += '<div class="info_tab">'
-                        blog_content += '<div class="th_img" style="display: inline-block;"><img src=""></div>'
+                        blog_content += '<div class="th_img" style="display: inline-block;"><img src="./images/blog.png"></div>'
                         blog_content += '<div class="info_tab_bl">'
                         blog_content += '<ul><li style="margin-top: 5px;"><a href="' + blog[i].link + '">' + blog[i].title + '</a></li>'
                         blog_content += '<li>' + blog[i].description + '</li>'
@@ -439,7 +443,7 @@
 
                     for (let i = 0; i < news.length; i++) {
                         news_content += '<div class="info_tab">'
-                        news_content += '<div class="th_img" style="display: inline-block;"><img src=""></div>'
+                        news_content += '<div class="th_img" style="display: inline-block;"><img src="./images/nes_2.png"></div>'
                         news_content += '<div class="info_tab_bl">'
                         news_content += '<ul><li style="margin-top: 5px;"><a href="' + news[i].link + '">' + news[i].title + '</a></li>'
                         news_content += '<li>' + news[i].description + '</li>'

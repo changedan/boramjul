@@ -61,7 +61,7 @@ public class memberDAO {
 			} else {
 			}
 
-			String sql = "insert into T_member values(?, ?, ?, ?, ?, sysdate, 'Y')";
+			String sql = "insert into T_member values(?, ?, ?, ?, ?, sysdate, 'N')";
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
