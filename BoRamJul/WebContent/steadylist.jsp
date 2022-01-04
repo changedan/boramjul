@@ -33,7 +33,6 @@ ArrayList<TBookDTO> steady = dao.selecsteady();
 <style>
 .rank_tab {
 	height: 200px;
-	margin: 2px;
 	padding: 0px;
 	display: flex;
 }
