@@ -111,6 +111,7 @@
 			for(int i = 0; i < 8; i++) {
 		%>
 		<%if ( i % 2 == 0) { %>
+		<a href="BookInfo?no=<%=steady.get(i).getBookSeq()%>">
 		<div class="rank_tab" style="background-color: rgb(248, 246, 234)">
 		
 			<div class="th_img" style="display: inline-block;">
@@ -132,6 +133,7 @@
 		</div>
 		<%} %>
 		<%if ( i % 2 == 1) { %>
+		<a href="BookInfo?no=<%=steady.get(i).getBookSeq()%>">
 		<div class="rank_tab" style="background-color: rgb(248, 226, 234)">
 			<div class="th_img" style="display: inline-block;">
 				<img src="<%=steady.get(i).getBookCover() %>">

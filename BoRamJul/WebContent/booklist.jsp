@@ -113,11 +113,12 @@
 			for(int i = 0; i < best.size(); i++) {
 		%>
 		<%if ( i % 2 == 0) { %>
+		<a href="BookInfo?no=<%=best.get(i).getBookSeq()%>">
 		<div class="rank_tab" style="background-color: rgb(248, 246, 234)">
 		
 			<div class="th_img" style="display: inline-block;">
 			
-			
+				
 				<img src="<%=best.get(i).getBookCover() %>">
 			</div>
 			<div class="info_tab_bl">
@@ -134,6 +135,7 @@
 		</div>
 		<%} %>
 		<%if ( i % 2 == 1) { %>
+		<a href="BookInfo?no=<%=best.get(i).getBookSeq()%>">
 		<div class="rank_tab" style="background-color: rgb(248, 226, 234)">
 			<div class="th_img" style="display: inline-block;">
 				<img src="<%=best.get(i).getBookCover() %>">
