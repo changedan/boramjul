@@ -196,7 +196,29 @@
             margin-bottom: 0px;
             overflow: hidden;
         }
-    </style>
+        
+
+        #halfcount {
+        position: absolute;
+		
+        color: ghostwhite;
+        }
+        .halfcount::before {
+        position: absolute;
+
+        content: attr(data-split);
+        width: 50%;
+        color: green;
+        overflow: hidden;
+        }
+        .counted{
+        color: green;
+        }
+        .uncounted{
+        color: #fff;
+        }
+        
+        </style>
 </head>
 
 <body class="site-main" id="sTop">
@@ -237,7 +259,6 @@
     </div>
     <hr class="hr_main" style="width:80%;">
 
-	<center>
     <div class="book_main">
         <!--도서 이미지-->
         <div class="book_img" style="display: inline-block; width: 420px; height: 700px; margin-right: 40px; margin-top: 0px; margin-bottom: 5px; align-content: center; padding-top: 0px;">
@@ -292,6 +313,25 @@
 						                        닉네임 : <%=review.get(i).getMb_nick()%><br>
 									리뷰내용 : <%=review.get(i).getReview_content()%><br>
 						                       작성일 : <%=review.get(i).getReview_date()%>
+						            	별점 : <%=review.get(i).getStar_point() %>
+						            	<% double star = review.get(i).getStar_point();
+						            		if(star < 1 ){ %>
+						            			<span data-split='★'  id='halfcount' class="halfcount">★</span>
+						            		<%}else{
+						            			for( int k = 1; k <= 5; k++){
+													if(star > 0.9){%>
+														<span class='counted'>★</span>
+													<%}else if(0.1 >= star){%>
+														<span class='uncounted'>★</span>
+													<%}else{%>
+														<span data-split='★' id='halfcount' class="halfcount">★</span>
+						            				<%}
+						            				System.out.println(star);
+						            				star --;
+						            				%>
+						            		<%}%>
+						            	<%}%>
+						            		
 	                        </li>
                         <%}}%>
                     </ul>
@@ -342,7 +382,6 @@
                             <label for="starpoint_8" class="label_star" title="4" ><span class="blind">4점</span></label>
                             <label for="starpoint_9" class="label_star" title="4.5" ><span class="blind">4.5점</span></label>
                             <label for="starpoint_10" class="label_star" title="5" ><span class="blind">5점</span></label>
-                            <input style="display: none" type="text" name="book_title" value="<%=book.getBookTitle()%>">
                             <input type="radio" name="starpoint" value="0.5" id="starpoint_1" class="star_radio"> 
                             <input type="radio" name="starpoint" value="1" id="starpoint_2" class="star_radio"> 
                             <input type="radio" name="starpoint" value="1.5" id="starpoint_3" class="star_radio"> 
@@ -356,6 +395,7 @@
                             <div class="starpoint_bg"></div>
                         </div>
                     </div>
+                    <input style="display: none" type="text" name="book_title" value="<%=book.getBookTitle()%>">
                     <hr>
                     <input type="submit" value="작성완료" style="display: inline-block; position: relative; top: 20px; color: white; margin-bottom: 50px;font-weight: bold; background-color: rgb(78, 221, 78);">
                 </form>
