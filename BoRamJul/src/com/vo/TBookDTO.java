@@ -61,8 +61,13 @@ public class TBookDTO {
 
 
 
-	public TBookDTO() {
-		// TODO Auto-generated constructor stub
+	public TBookDTO(int book_seq, String book_title, String book_brief, String book_cover, String book_author, String book_publisher) {
+		this.book_Seq = book_seq;
+		this.book_Title = book_title;
+		this.book_Brief = book_brief;
+		this.book_Cover = book_cover;
+		this.book_Author = book_author;
+		this.book_Publisher = book_publisher;
 	}
 
 
