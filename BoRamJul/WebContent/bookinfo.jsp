@@ -258,7 +258,7 @@
         <!-- /.main-header -->
     </div>
     <hr class="hr_main" style="width:80%;">
-
+	<!-- <center> -->
     <div class="book_main">
         <!--도서 이미지-->
         <div class="book_img" style="display: inline-block; width: 420px; height: 700px; margin-right: 40px; margin-top: 0px; margin-bottom: 5px; align-content: center; padding-top: 0px;">
@@ -310,10 +310,9 @@
 						<% for (int i = 0; i<review.size(); i++){ %>
 	                        <li>
 	                        	<%if (review.get(i).getBook_title().equals(book.getBookTitle())){ %>
-						                        닉네임 : <%=review.get(i).getMb_nick()%><br>
-									리뷰내용 : <%=review.get(i).getReview_content()%><br>
-						                       작성일 : <%=review.get(i).getReview_date()%>
-						            	별점 : <%=review.get(i).getStar_point() %>
+						                        <%=review.get(i).getMb_nick()%><br>
+									<%=review.get(i).getReview_content()%><br>
+						            	<%=review.get(i).getStar_point() %>
 						            	<% double star = review.get(i).getStar_point();
 						            		if(star < 1 ){ %>
 						            			<span data-split='★'  id='halfcount' class="halfcount">★</span>
