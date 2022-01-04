@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="com.DTO.memberDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.DAO.TBookDAO"%>
@@ -18,6 +19,7 @@
 	ArrayList<TBookDTO> bestseller = dao.selectBookAll();
 	ArrayList<TBookDTO> newbook = dao.selectnew();
 	ArrayList<TBookDTO> steady = dao.selecsteady();
+	
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -286,7 +288,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-xs-12 text-left">
-                    <span>보람줄 &copy; 2021 북작북작</span>
+                    <span>보람줄 &copy; 2022 북작북작</span>
                 </div>
                 <!-- /.text-center -->
                 <div class="col-md-4 hidden-xs text-right">
