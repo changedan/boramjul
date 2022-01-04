@@ -293,14 +293,14 @@
 
             <!--도서 해쉬태그-->
             <br>
-            <ul class=book_tag style="list-style: none; margin-left: 40px; margin-bottom: 20px; padding-left: 0px; display: inline-flex;">
-            <% for (int i = 0; i<review.size(); i++){ %>
-            <%if (review.get(i).getBook_title().equals(book.getBookTitle())){ %>
-                <li><%=review.get(i).getReview_tag1()%></li>
-                <li><%=review.get(i).getReview_tag2()%></li>
-                <li><%=review.get(i).getReview_tag3()%></li>
-            <%} }%>
-            </ul>
+	            <ul class=book_tag style="list-style: none; margin-left: 40px; margin-bottom: 20px; padding-left: 0px; display: inline-flex;">
+	            <% for (int i = 0; i<review.size(); i++){ %>
+	            <%if (review.get(i).getBook_title().equals(book.getBookTitle())){ %>
+	                <li><%=review.get(i).getReview_tag1()%></li>
+	                <li><%=review.get(i).getReview_tag2()%></li>
+	                <li><%=review.get(i).getReview_tag3()%></li>
+	            <%} }%>
+	            </ul>
             <hr>
             <!--도서평가-->
             <div class="my_comment">
@@ -308,7 +308,7 @@
                 <hr>
                 <div class="comment" style="display: inline-block; width: 350px; border-right: 1px solid gray; margin-top: 10px; margin-left: 38px; padding-right: 40px;">
                     <ul>
-						<% for (int i = 0; i<3; i++){ %>
+						<% for (int i = 0; i<review.size(); i++){ %>
 	                        <li>
 	                        	<%if (review.get(i).getBook_title().equals(book.getBookTitle())){ %>
 						            <%=review.get(i).getMb_nick()%><br>
@@ -338,7 +338,7 @@
                 </div>
                 <div class="comment" style="display: inline-block; width: 350px; margin-left: 15px; margin-top: 10px; border-left: 1px solid gray; padding-right: 40px;">
                     <ul>
-						<% for (int i = 3; i<6; i++){ %>
+				 		 <% for (int i = 4; i<review.size(); i++){ %>
 	                        <li>
 	                        	<%if (review.get(i).getBook_title().equals(book.getBookTitle())){ %>
 						            <%=review.get(i).getMb_nick()%><br>
@@ -360,10 +360,10 @@
 						            				star --;
 						            				%>
 						            		<%}%>
-						            	<%}%>
+						            	<%}%> 
 						            		
 	                        </li>
-                        <%}}%>
+                       <%}}%> 
                     </ul>
                 </div>
             </div>
