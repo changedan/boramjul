@@ -164,4 +164,66 @@ public class TBookDAO {
 		return best;
 	}
 
+	// 책 신간 보여질 정보 조회
+		public ArrayList<TBookDTO> selectnew() {
+			ArrayList<TBookDTO> newbook = new ArrayList<TBookDTO>();
+
+			try {
+				getConn();
+
+				String sql = "SELECT a.book_seq, a.book_title, a.book_brief, a.book_cover FROM T_BOOK a, T_new b WHERE a.book_title = b.book_title order by b.book_rank";
+
+				psmt = conn.prepareStatement(sql);
+
+				rs = psmt.executeQuery();
+
+				while (rs.next()) {
+					int book_seq = rs.getInt(1);
+					String book_title = rs.getString(2);
+					String book_brief = rs.getString(3);
+					String book_cover = rs.getString(4);
+
+					newbook.add(new TBookDTO(book_seq, book_title, book_brief, book_cover));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+
+			} finally {
+				close();
+			}
+
+			return newbook;
+		}
+		
+		// 책 스테디 보여질 정보 조회
+				public ArrayList<TBookDTO> selecsteady() {
+					ArrayList<TBookDTO> steady = new ArrayList<TBookDTO>();
+
+					try {
+						getConn();
+
+						String sql = "SELECT a.book_seq, a.book_title, a.book_brief, a.book_cover FROM T_BOOK a, T_steady b WHERE a.book_title = b.book_title order by b.book_rank";
+
+						psmt = conn.prepareStatement(sql);
+
+						rs = psmt.executeQuery();
+
+						while (rs.next()) {
+							int book_seq = rs.getInt(1);
+							String book_title = rs.getString(2);
+							String book_brief = rs.getString(3);
+							String book_cover = rs.getString(4);
+
+							steady.add(new TBookDTO(book_seq, book_title, book_brief, book_cover));
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+
+					} finally {
+						close();
+					}
+
+					return steady;
+				}
+	
 }
